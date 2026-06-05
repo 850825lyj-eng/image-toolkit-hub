@@ -139,7 +139,7 @@
       background: var(--surface); border-radius: var(--radius); padding: 28px;
       width: 90%; max-width: 580px; max-height: 85vh; overflow-y: auto;
       box-shadow: 0 20px 40px rgba(0,0,0,0.15); border: 1px solid var(--border-light);
-      display: flex; flex-direction: column; gap: 20px;
+      display: flex; flex-direction: column; gap: 20px; position: relative;
     }
     .modal-header { display: flex; justify-content: space-between; align-items: center; }
     .modal-close {
@@ -154,15 +154,13 @@
     .preview-box { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
     .preview-box img { max-width: 150px; border-radius: var(--radius-sm); border: 1px solid var(--border-light); }
     .stats { font-size: 0.9rem; color: var(--text-secondary); }
-    .progress-bar { height: 6px; background: var(--border-light); border-radius: 3px; overflow: hidden; }
-    .progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.3s; }
     .platform-select { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
     .platform-check { display: flex; align-items: center; gap: 4px; font-size: 0.85rem; }
     .download-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr)); gap: 12px; }
     .download-item { text-align: center; }
     .download-item img { width: 100%; border-radius: var(--radius-sm); border: 1px solid var(--border-light); }
     .paywall {
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.85);
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.9);
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
       border-radius: var(--radius); backdrop-filter: blur(4px); z-index: 5; text-align: center; padding: 24px;
     }
@@ -174,6 +172,13 @@
     .btn-primary:hover { opacity: 0.9; }
     .price { font-size: 2rem; font-weight: 700; color: var(--accent); }
     .small-text { font-size: 0.8rem; color: var(--text-muted); }
+    .format-select {
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+    }
+    .format-select select {
+      padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-light);
+      background: var(--surface); color: var(--text-primary); font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
@@ -220,14 +225,14 @@
           <a href="https://www.canva.cn" target="_blank" class="btn-ghost">Canva →</a>
         </div>
       </div>
-      <!-- 3. 批量改尺寸（含自研一键上架） -->
+      <!-- 3. 批量改尺寸 -->
       <div class="bento-card card-3">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div>
         <div class="card-title">📐 改尺寸</div>
         <div class="card-desc">淘宝/拼多多/抖音全平台尺寸预设，一键裁剪适配。自研上架每月免费3次。</div>
         <div class="card-actions">
           <button class="btn-outline" onclick="openListingModal()">📦 自研上架</button>
-          <button class="btn-ghost" onclick="alert('即将跳转到格式转换工具。')">🔄 格式转换</button>
+          <button class="btn-ghost" onclick="openConvertModal()">🔄 格式转换</button>
         </div>
       </div>
       <!-- 4. 跨境主图适配 -->
@@ -250,24 +255,23 @@
           <button class="btn-ghost" onclick="alert('请使用电商工作台的一键上架功能。')">📐 封面尺寸</button>
         </div>
       </div>
-      <!-- 6. 在线压缩（含自研压缩） -->
+      <!-- 6. 在线压缩 -->
       <div class="bento-card card-6">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
         <div class="card-title">🗜️ 图片压缩</div>
-        <div class="card-desc">TinyPNG、Squoosh 无损压缩，上传体积大自动瘦身。自研压缩每月免费5次。</div>
+        <div class="card-desc">TinyPNG、Squoosh 无损压缩。自研压缩每月免费5次。</div>
         <div class="card-actions">
-          <a href="https://tinypng.com" target="_blank" class="btn-outline">TinyPNG</a>
-          <button class="btn-ghost" onclick="openCompressModal()">🚀 自研压缩</button>
-          <a href="https://squoosh.app" target="_blank" class="btn-ghost">Squoosh →</a>
+          <button class="btn-outline" onclick="openCompressModal()">🚀 自研压缩</button>
+          <a href="https://tinypng.com" target="_blank" class="btn-ghost">TinyPNG →</a>
         </div>
       </div>
-      <!-- 7. 格式转换 -->
+      <!-- 7. 格式转换（本次优化） -->
       <div class="bento-card card-7">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg></div>
         <div class="card-title">🔄 格式转换</div>
-        <div class="card-desc">JPG/PNG/WebP互转，满足各平台上传格式要求。</div>
+        <div class="card-desc">JPG/PNG/WebP互转，满足各平台上传格式要求。自研转换每月免费5次。</div>
         <div class="card-actions">
-          <button class="btn-outline" onclick="alert('格式转换功能即将开放，敬请期待。')">开始转换</button>
+          <button class="btn-outline" onclick="openConvertModal()">🚀 自研转换</button>
           <a href="https://convertio.co/zh/" target="_blank" class="btn-ghost">Convertio →</a>
         </div>
       </div>
@@ -301,10 +305,7 @@
   <!-- 压缩模态窗口 -->
   <div class="modal-overlay" id="compressModal">
     <div class="modal">
-      <div class="modal-header">
-        <h3>🗜️ 自研图片压缩</h3>
-        <button class="modal-close" onclick="closeModals()">✕</button>
-      </div>
+      <div class="modal-header"><h3>🗜️ 自研图片压缩</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
       <div id="compressContent" style="position:relative;">
         <div class="upload-area" id="compressUpload" onclick="document.getElementById('compressFileInput').click()">
           <p>📤 点击或拖拽上传图片</p>
@@ -316,8 +317,7 @@
         <button class="btn-outline" id="compressDownloadBtn" style="display:none;">⬇️ 下载压缩图</button>
         <div class="paywall" id="compressPaywall" style="display:none;">
           <div class="price">¥6.9<span style="font-size:1rem;">/月</span></div>
-          <p>本月免费压缩次数已用完</p>
-          <p>升级会员，无限次压缩 + 高清导出</p>
+          <p>本月免费压缩次数已用完</p><p>升级会员，无限次压缩 + 高清导出</p>
           <button class="btn-primary" onclick="alert('请联系客服开通会员，微信：xiuxiutu_vip')">📱 联系客服升级</button>
           <p class="small-text">开通后刷新页面即可继续使用</p>
         </div>
@@ -328,10 +328,7 @@
   <!-- 一键上架模态窗口 -->
   <div class="modal-overlay" id="listingModal">
     <div class="modal">
-      <div class="modal-header">
-        <h3>📦 自研一键上架</h3>
-        <button class="modal-close" onclick="closeModals()">✕</button>
-      </div>
+      <div class="modal-header"><h3>📦 自研一键上架</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
       <div id="listingContent" style="position:relative;">
         <div class="upload-area" id="listingUpload" onclick="document.getElementById('listingFileInput').click()">
           <p>📤 点击上传商品主图</p>
@@ -348,8 +345,39 @@
         <div class="download-grid" id="downloadGrid"></div>
         <div class="paywall" id="listingPaywall" style="display:none;">
           <div class="price">¥9.9<span style="font-size:1rem;">/月</span></div>
-          <p>本月免费上架次数已用完</p>
-          <p>升级会员，无限次生成全平台图片包</p>
+          <p>本月免费上架次数已用完</p><p>升级会员，无限次生成全平台图片包</p>
+          <button class="btn-primary" onclick="alert('请联系客服开通会员，微信：xiuxiutu_vip')">📱 联系客服升级</button>
+          <p class="small-text">开通后刷新页面即可继续使用</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 格式转换模态窗口（本次新增） -->
+  <div class="modal-overlay" id="convertModal">
+    <div class="modal">
+      <div class="modal-header"><h3>🔄 自研格式转换</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
+      <div id="convertContent" style="position:relative;">
+        <div class="upload-area" id="convertUpload" onclick="document.getElementById('convertFileInput').click()">
+          <p>📤 点击上传图片</p>
+          <p class="small-text">支持 JPG/PNG/WebP，本月剩余免费次数 <span id="convertRemaining">5</span></p>
+        </div>
+        <input type="file" id="convertFileInput" accept="image/*" hidden onchange="handleConvertUpload(event)">
+        <div class="format-select" id="convertFormatSelect" style="display:none;">
+          <span>目标格式：</span>
+          <select id="convertTargetFormat">
+            <option value="image/jpeg">JPG</option>
+            <option value="image/png">PNG</option>
+            <option value="image/webp">WebP</option>
+          </select>
+          <button class="btn-outline" onclick="performConvert()">✨ 开始转换</button>
+        </div>
+        <div class="preview-box" id="convertPreview" style="display:none;"></div>
+        <div class="stats" id="convertStats" style="display:none;"></div>
+        <button class="btn-outline" id="convertDownloadBtn" style="display:none;">⬇️ 下载转换图</button>
+        <div class="paywall" id="convertPaywall" style="display:none;">
+          <div class="price">¥4.9<span style="font-size:1rem;">/月</span></div>
+          <p>本月免费转换次数已用完</p><p>升级会员，无限次格式转换</p>
           <button class="btn-primary" onclick="alert('请联系客服开通会员，微信：xiuxiutu_vip')">📱 联系客服升级</button>
           <p class="small-text">开通后刷新页面即可继续使用</p>
         </div>
@@ -358,14 +386,13 @@
   </div>
 
   <script>
-    // ========== 主题、导航等原有逻辑 ==========
+    // ========== 主题、导航 ==========
     (function() {
       const themeToggle = document.getElementById('themeToggle');
       const body = document.body;
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        body.classList.add('dark');
-        themeToggle.textContent = '☀️';
+        body.classList.add('dark'); themeToggle.textContent = '☀️';
       }
       themeToggle.addEventListener('click', () => {
         body.classList.toggle('dark');
@@ -380,18 +407,6 @@
         navTabs.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
       });
-      document.querySelectorAll('.bento-card button, .bento-card .btn-outline, .bento-card .btn-ghost').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          const ripple = document.createElement('span');
-          ripple.style.cssText = `position: absolute; border-radius: 50%; background: rgba(99,102,241,0.3); width: 20px; height: 20px; left: ${e.clientX - this.getBoundingClientRect().left - 10}px; top: ${e.clientY - this.getBoundingClientRect().top - 10}px; animation: ripple 0.6s ease-out; pointer-events: none;`;
-          this.style.position = 'relative'; this.style.overflow = 'hidden';
-          this.appendChild(ripple);
-          setTimeout(() => ripple.remove(), 600);
-        });
-      });
-      const style = document.createElement('style');
-      style.textContent = `@keyframes ripple { from { transform: scale(0); opacity: 1; } to { transform: scale(8); opacity: 0; } }`;
-      document.head.appendChild(style);
     })();
 
     // ========== 免费次数管理 ==========
@@ -402,7 +417,7 @@
       try { return JSON.parse(raw); } catch { return {}; }
     }
     function saveUsage(usage) { localStorage.setItem(STORAGE_KEY, JSON.stringify(usage)); }
-    function getMonthlyCount(toolKey, limit) {
+    function getMonthlyCount(toolKey) {
       const now = new Date();
       const month = `${now.getFullYear()}-${now.getMonth()+1}`;
       const usage = getUsage();
@@ -424,10 +439,10 @@
       saveUsage(usage);
     }
     function isWithinLimit(toolKey, limit) {
-      return getMonthlyCount(toolKey, limit) < limit;
+      return getMonthlyCount(toolKey) < limit;
     }
     function remainingCount(toolKey, limit) {
-      return Math.max(0, limit - getMonthlyCount(toolKey, limit));
+      return Math.max(0, limit - getMonthlyCount(toolKey));
     }
 
     // ========== 模态窗口控制 ==========
@@ -453,19 +468,33 @@
         document.getElementById('listingUpload').style.pointerEvents = 'auto';
       }
     }
+    function openConvertModal() {
+      document.getElementById('convertModal').classList.add('active');
+      document.getElementById('convertRemaining').textContent = remainingCount('convert', 5);
+      if (!isWithinLimit('convert', 5)) {
+        document.getElementById('convertPaywall').style.display = 'flex';
+        document.getElementById('convertUpload').style.pointerEvents = 'none';
+      } else {
+        document.getElementById('convertPaywall').style.display = 'none';
+        document.getElementById('convertUpload').style.pointerEvents = 'auto';
+      }
+    }
     function closeModals() {
       document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
       document.getElementById('compressPreview').style.display = 'none';
       document.getElementById('compressStats').style.display = 'none';
       document.getElementById('compressDownloadBtn').style.display = 'none';
       document.getElementById('compressFileInput').value = '';
+      document.getElementById('convertPreview').style.display = 'none';
+      document.getElementById('convertStats').style.display = 'none';
+      document.getElementById('convertDownloadBtn').style.display = 'none';
+      document.getElementById('convertFormatSelect').style.display = 'none';
+      document.getElementById('convertFileInput').value = '';
     }
 
     // ========== 图片压缩逻辑 ==========
     function handleCompressUpload(event) {
-      if (!isWithinLimit('compress', 5)) {
-        openCompressModal(); return;
-      }
+      if (!isWithinLimit('compress', 5)) { openCompressModal(); return; }
       const file = event.target.files[0];
       if (!file) return;
       const reader = new FileReader();
@@ -473,24 +502,18 @@
         const img = new Image();
         img.onload = () => {
           const canvas = document.createElement('canvas');
-          canvas.width = img.width;
-          canvas.height = img.height;
+          canvas.width = img.width; canvas.height = img.height;
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0);
           canvas.toBlob((blob) => {
             const compressedUrl = URL.createObjectURL(blob);
-            const originalSize = file.size;
-            const compressedSize = blob.size;
             document.getElementById('compressPreview').style.display = 'flex';
             document.getElementById('compressPreview').innerHTML = `<img src="${compressedUrl}" alt="压缩预览">`;
             document.getElementById('compressStats').style.display = 'block';
-            document.getElementById('compressStats').innerHTML = `原始大小: ${(originalSize/1024).toFixed(1)}KB → 压缩后: ${(compressedSize/1024).toFixed(1)}KB (减少${((1 - compressedSize/originalSize)*100).toFixed(0)}%)`;
+            document.getElementById('compressStats').innerHTML = `原始: ${(file.size/1024).toFixed(1)}KB → 压缩后: ${(blob.size/1024).toFixed(1)}KB (减少${((1 - blob.size/file.size)*100).toFixed(0)}%)`;
             document.getElementById('compressDownloadBtn').style.display = 'inline-flex';
             document.getElementById('compressDownloadBtn').onclick = () => {
-              const a = document.createElement('a');
-              a.href = compressedUrl;
-              a.download = 'compressed.jpg';
-              a.click();
+              const a = document.createElement('a'); a.href = compressedUrl; a.download = 'compressed.jpg'; a.click();
             };
             incrementCount('compress');
             document.getElementById('compressRemaining').textContent = remainingCount('compress', 5);
@@ -510,9 +533,7 @@
     };
     let uploadedImage = null;
     function handleListingUpload(event) {
-      if (!isWithinLimit('listing', 3)) {
-        openListingModal(); return;
-      }
+      if (!isWithinLimit('listing', 3)) { openListingModal(); return; }
       const file = event.target.files[0];
       if (!file) return;
       const reader = new FileReader();
@@ -537,22 +558,15 @@
       selected.forEach(key => {
         const plat = platforms[key];
         const canvas = document.createElement('canvas');
-        canvas.width = plat.width;
-        canvas.height = plat.height;
+        canvas.width = plat.width; canvas.height = plat.height;
         const ctx = canvas.getContext('2d');
         const imgRatio = uploadedImage.width / uploadedImage.height;
         const targetRatio = plat.width / plat.height;
         let sx, sy, sw, sh;
         if (imgRatio > targetRatio) {
-          sh = uploadedImage.height;
-          sw = sh * targetRatio;
-          sx = (uploadedImage.width - sw) / 2;
-          sy = 0;
+          sh = uploadedImage.height; sw = sh * targetRatio; sx = (uploadedImage.width - sw) / 2; sy = 0;
         } else {
-          sw = uploadedImage.width;
-          sh = sw / targetRatio;
-          sx = 0;
-          sy = (uploadedImage.height - sh) / 2;
+          sw = uploadedImage.width; sh = sw / targetRatio; sx = 0; sy = (uploadedImage.height - sh) / 2;
         }
         ctx.drawImage(uploadedImage, sx, sy, sw, sh, 0, 0, plat.width, plat.height);
         const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
@@ -563,6 +577,49 @@
       });
       incrementCount('listing');
       document.getElementById('listingRemaining').textContent = remainingCount('listing', 3);
+    }
+
+    // ========== 格式转换逻辑（本次新增） ==========
+    let convertFile = null;
+    function handleConvertUpload(event) {
+      if (!isWithinLimit('convert', 5)) { openConvertModal(); return; }
+      convertFile = event.target.files[0];
+      if (!convertFile) return;
+      document.getElementById('convertFormatSelect').style.display = 'flex';
+      document.getElementById('convertUpload').innerHTML = `<p>✅ 已选择：${convertFile.name}</p><p class="small-text">请选择目标格式并开始转换</p>`;
+      document.getElementById('convertPreview').style.display = 'none';
+      document.getElementById('convertStats').style.display = 'none';
+      document.getElementById('convertDownloadBtn').style.display = 'none';
+    }
+    function performConvert() {
+      if (!convertFile) return;
+      const format = document.getElementById('convertTargetFormat').value;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width; canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+          const ext = format.split('/')[1];
+          canvas.toBlob((blob) => {
+            const url = URL.createObjectURL(blob);
+            document.getElementById('convertPreview').style.display = 'flex';
+            document.getElementById('convertPreview').innerHTML = `<img src="${url}" alt="转换预览">`;
+            document.getElementById('convertStats').style.display = 'block';
+            document.getElementById('convertStats').innerHTML = `格式：${ext.toUpperCase()} | 大小：${(blob.size/1024).toFixed(1)}KB`;
+            document.getElementById('convertDownloadBtn').style.display = 'inline-flex';
+            document.getElementById('convertDownloadBtn').onclick = () => {
+              const a = document.createElement('a'); a.href = url; a.download = `converted.${ext}`; a.click();
+            };
+            incrementCount('convert');
+            document.getElementById('convertRemaining').textContent = remainingCount('convert', 5);
+          }, format, 0.92);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(convertFile);
     }
   </script>
 </body>
