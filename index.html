@@ -137,7 +137,7 @@
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal {
       background: var(--surface); border-radius: var(--radius); padding: 28px;
-      width: 90%; max-width: 580px; max-height: 85vh; overflow-y: auto;
+      width: 90%; max-width: 680px; max-height: 85vh; overflow-y: auto;
       box-shadow: 0 20px 40px rgba(0,0,0,0.15); border: 1px solid var(--border-light);
       display: flex; flex-direction: column; gap: 20px; position: relative;
     }
@@ -152,7 +152,7 @@
     }
     .upload-area:hover { background: var(--surface-hover); }
     .preview-box { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
-    .preview-box img { max-width: 150px; border-radius: var(--radius-sm); border: 1px solid var(--border-light); }
+    .preview-box img, .preview-box video { max-width: 200px; border-radius: var(--radius-sm); border: 1px solid var(--border-light); }
     .stats { font-size: 0.9rem; color: var(--text-secondary); }
     .platform-select { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
     .platform-check { display: flex; align-items: center; gap: 4px; font-size: 0.85rem; }
@@ -172,13 +172,18 @@
     .btn-primary:hover { opacity: 0.9; }
     .price { font-size: 2rem; font-weight: 700; color: var(--accent); }
     .small-text { font-size: 0.8rem; color: var(--text-muted); }
-    .format-select {
+    .format-select, .text-controls {
       display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
     }
-    .format-select select {
+    .format-select select, .text-controls input[type="text"] {
       padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-light);
       background: var(--surface); color: var(--text-primary); font-size: 0.9rem;
     }
+    .text-controls input[type="color"] { width: 40px; height: 32px; border: 1px solid var(--border-light); border-radius: 6px; cursor: pointer; }
+    .video-container { position: relative; margin: 8px 0; }
+    .video-container video { width: 100%; border-radius: var(--radius-sm); }
+    .seek-bar { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+    .seek-bar input[type="range"] { flex: 1; }
   </style>
 </head>
 <body>
@@ -245,14 +250,14 @@
           <button class="btn-ghost" onclick="alert('即将跳转到跨境规范速查表。')">📋 规范速查</button>
         </div>
       </div>
-      <!-- 5. 短视频封面 -->
+      <!-- 5. 短视频封面（已升级为自研） -->
       <div class="bento-card card-5">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
         <div class="card-title">🎬 封面生成</div>
-        <div class="card-desc">抖音/快手/小红书视频封面提取+文字叠加，快速出图。</div>
+        <div class="card-desc">抖音/快手/小红书视频封面提取+文字叠加，自研工具每月免费3次。</div>
         <div class="card-actions">
-          <button class="btn-outline" onclick="alert('短视频封面生成即将上线。')">🎥 提取封面</button>
-          <button class="btn-ghost" onclick="alert('请使用电商工作台的一键上架功能。')">📐 封面尺寸</button>
+          <button class="btn-outline" onclick="openCoverModal()">🎥 提取封面</button>
+          <button class="btn-ghost" onclick="openListingModal()">📐 封面尺寸</button>
         </div>
       </div>
       <!-- 6. 在线压缩 -->
@@ -265,7 +270,7 @@
           <a href="https://tinypng.com" target="_blank" class="btn-ghost">TinyPNG →</a>
         </div>
       </div>
-      <!-- 7. 格式转换（本次优化） -->
+      <!-- 7. 格式转换 -->
       <div class="bento-card card-7">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg></div>
         <div class="card-title">🔄 格式转换</div>
@@ -353,7 +358,7 @@
     </div>
   </div>
 
-  <!-- 格式转换模态窗口（本次新增） -->
+  <!-- 格式转换模态窗口 -->
   <div class="modal-overlay" id="convertModal">
     <div class="modal">
       <div class="modal-header"><h3>🔄 自研格式转换</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
@@ -378,6 +383,41 @@
         <div class="paywall" id="convertPaywall" style="display:none;">
           <div class="price">¥4.9<span style="font-size:1rem;">/月</span></div>
           <p>本月免费转换次数已用完</p><p>升级会员，无限次格式转换</p>
+          <button class="btn-primary" onclick="alert('请联系客服开通会员，微信：xiuxiutu_vip')">📱 联系客服升级</button>
+          <p class="small-text">开通后刷新页面即可继续使用</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 短视频封面提取模态窗口（新增） -->
+  <div class="modal-overlay" id="coverModal">
+    <div class="modal">
+      <div class="modal-header"><h3>🎬 短视频封面提取</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
+      <div id="coverContent" style="position:relative;">
+        <div class="upload-area" id="coverUpload" onclick="document.getElementById('coverFileInput').click()">
+          <p>📤 点击上传视频（MP4/MOV/WebM）</p>
+          <p class="small-text">最大100MB，本月剩余免费次数 <span id="coverRemaining">3</span></p>
+        </div>
+        <input type="file" id="coverFileInput" accept="video/*" hidden onchange="handleCoverUpload(event)">
+        <div class="video-container" id="coverVideoContainer" style="display:none;">
+          <video id="coverVideo" controls crossorigin="anonymous" style="width:100%;"></video>
+        </div>
+        <div class="seek-bar" id="coverSeekBar" style="display:none;">
+          <span>当前时间：<span id="currentTimeDisplay">0.0</span>s</span>
+          <input type="range" id="seekSlider" min="0" step="0.1" value="0">
+          <button class="btn-outline" onclick="captureFrame()">📸 抓取当前帧</button>
+        </div>
+        <div class="text-controls" id="coverTextControls" style="display:none;">
+          <input type="text" id="coverTextInput" placeholder="输入封面文字（可选）" maxlength="30">
+          <input type="color" id="coverTextColor" value="#ffffff">
+          <span class="small-text">文字颜色</span>
+        </div>
+        <div class="preview-box" id="coverPreview" style="display:none;"></div>
+        <button class="btn-outline" id="coverDownloadBtn" style="display:none;">⬇️ 下载封面图</button>
+        <div class="paywall" id="coverPaywall" style="display:none;">
+          <div class="price">¥9.9<span style="font-size:1rem;">/月</span></div>
+          <p>本月免费提取次数已用完</p><p>升级会员，无限次视频封面提取</p>
           <button class="btn-primary" onclick="alert('请联系客服开通会员，微信：xiuxiutu_vip')">📱 联系客服升级</button>
           <p class="small-text">开通后刷新页面即可继续使用</p>
         </div>
@@ -445,7 +485,37 @@
       return Math.max(0, limit - getMonthlyCount(toolKey));
     }
 
-    // ========== 模态窗口控制 ==========
+    // ========== 通用关闭 ==========
+    function closeModals() {
+      document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+      // 清理压缩
+      document.getElementById('compressPreview').style.display = 'none';
+      document.getElementById('compressStats').style.display = 'none';
+      document.getElementById('compressDownloadBtn').style.display = 'none';
+      document.getElementById('compressFileInput').value = '';
+      // 清理上架
+      document.getElementById('downloadGrid').innerHTML = '';
+      document.getElementById('platformSelect').style.display = 'none';
+      document.getElementById('generateBtn').style.display = 'none';
+      document.getElementById('listingFileInput').value = '';
+      // 清理转换
+      document.getElementById('convertPreview').style.display = 'none';
+      document.getElementById('convertStats').style.display = 'none';
+      document.getElementById('convertDownloadBtn').style.display = 'none';
+      document.getElementById('convertFormatSelect').style.display = 'none';
+      document.getElementById('convertFileInput').value = '';
+      // 清理封面
+      document.getElementById('coverVideoContainer').style.display = 'none';
+      document.getElementById('coverSeekBar').style.display = 'none';
+      document.getElementById('coverTextControls').style.display = 'none';
+      document.getElementById('coverPreview').style.display = 'none';
+      document.getElementById('coverDownloadBtn').style.display = 'none';
+      document.getElementById('coverFileInput').value = '';
+      const video = document.getElementById('coverVideo');
+      if (video) video.pause();
+    }
+
+    // ========== 各工具打开逻辑 ==========
     function openCompressModal() {
       document.getElementById('compressModal').classList.add('active');
       document.getElementById('compressRemaining').textContent = remainingCount('compress', 5);
@@ -479,20 +549,19 @@
         document.getElementById('convertUpload').style.pointerEvents = 'auto';
       }
     }
-    function closeModals() {
-      document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
-      document.getElementById('compressPreview').style.display = 'none';
-      document.getElementById('compressStats').style.display = 'none';
-      document.getElementById('compressDownloadBtn').style.display = 'none';
-      document.getElementById('compressFileInput').value = '';
-      document.getElementById('convertPreview').style.display = 'none';
-      document.getElementById('convertStats').style.display = 'none';
-      document.getElementById('convertDownloadBtn').style.display = 'none';
-      document.getElementById('convertFormatSelect').style.display = 'none';
-      document.getElementById('convertFileInput').value = '';
+    function openCoverModal() {
+      document.getElementById('coverModal').classList.add('active');
+      document.getElementById('coverRemaining').textContent = remainingCount('cover', 3);
+      if (!isWithinLimit('cover', 3)) {
+        document.getElementById('coverPaywall').style.display = 'flex';
+        document.getElementById('coverUpload').style.pointerEvents = 'none';
+      } else {
+        document.getElementById('coverPaywall').style.display = 'none';
+        document.getElementById('coverUpload').style.pointerEvents = 'auto';
+      }
     }
 
-    // ========== 图片压缩逻辑 ==========
+    // ========== 图片压缩 ==========
     function handleCompressUpload(event) {
       if (!isWithinLimit('compress', 5)) { openCompressModal(); return; }
       const file = event.target.files[0];
@@ -524,7 +593,7 @@
       reader.readAsDataURL(file);
     }
 
-    // ========== 一键上架逻辑 ==========
+    // ========== 一键上架 ==========
     const platforms = {
       taobao: { width: 800, height: 800, name: '淘宝主图' },
       pdd: { width: 800, height: 800, name: '拼多多主图' },
@@ -579,7 +648,7 @@
       document.getElementById('listingRemaining').textContent = remainingCount('listing', 3);
     }
 
-    // ========== 格式转换逻辑（本次新增） ==========
+    // ========== 格式转换 ==========
     let convertFile = null;
     function handleConvertUpload(event) {
       if (!isWithinLimit('convert', 5)) { openConvertModal(); return; }
@@ -620,6 +689,66 @@
         img.src = e.target.result;
       };
       reader.readAsDataURL(convertFile);
+    }
+
+    // ========== 短视频封面提取（新增） ==========
+    let coverVideoElement = null;
+    function handleCoverUpload(event) {
+      if (!isWithinLimit('cover', 3)) { openCoverModal(); return; }
+      const file = event.target.files[0];
+      if (!file) return;
+      if (file.size > 100 * 1024 * 1024) { alert('视频文件不能超过100MB'); return; }
+      const video = document.getElementById('coverVideo');
+      const url = URL.createObjectURL(file);
+      video.src = url;
+      video.style.display = 'block';
+      document.getElementById('coverVideoContainer').style.display = 'block';
+      document.getElementById('coverSeekBar').style.display = 'flex';
+      document.getElementById('coverTextControls').style.display = 'flex';
+      document.getElementById('coverUpload').innerHTML = '<p>✅ 视频已加载，拖动进度条或播放到想要的位置，然后点击抓取</p>';
+      video.addEventListener('loadedmetadata', () => {
+        document.getElementById('seekSlider').max = video.duration;
+      });
+      video.addEventListener('timeupdate', () => {
+        document.getElementById('seekSlider').value = video.currentTime;
+        document.getElementById('currentTimeDisplay').textContent = video.currentTime.toFixed(1);
+      });
+      document.getElementById('seekSlider').oninput = function() {
+        video.currentTime = this.value;
+      };
+      coverVideoElement = video;
+    }
+    function captureFrame() {
+      if (!coverVideoElement) return;
+      const video = coverVideoElement;
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      // 添加文字
+      const text = document.getElementById('coverTextInput').value.trim();
+      if (text) {
+        const color = document.getElementById('coverTextColor').value;
+        const fontSize = Math.round(canvas.height * 0.06);
+        ctx.font = `bold ${fontSize}px -apple-system, sans-serif`;
+        ctx.fillStyle = color;
+        ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+        ctx.lineWidth = 2;
+        ctx.textAlign = 'center';
+        const y = canvas.height - fontSize * 1.5;
+        ctx.strokeText(text, canvas.width/2, y);
+        ctx.fillText(text, canvas.width/2, y);
+      }
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+      document.getElementById('coverPreview').style.display = 'flex';
+      document.getElementById('coverPreview').innerHTML = `<img src="${dataUrl}" alt="封面预览">`;
+      document.getElementById('coverDownloadBtn').style.display = 'inline-flex';
+      document.getElementById('coverDownloadBtn').onclick = () => {
+        const a = document.createElement('a'); a.href = dataUrl; a.download = 'cover.jpg'; a.click();
+      };
+      incrementCount('cover');
+      document.getElementById('coverRemaining').textContent = remainingCount('cover', 3);
     }
   </script>
 </body>
