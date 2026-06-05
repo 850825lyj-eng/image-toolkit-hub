@@ -206,7 +206,7 @@
 
     <div class="hero">
       <h1>电商AI美工百宝箱</h1>
-      <p>9大免费工具聚合：抠图、模板、尺寸、跨境、封面、压缩、格式、素材、文案。一站式工作台，让电商图片处理零门槛。</p>
+      <p>9大免费工具聚合：抠图、模板、尺寸、跨境、封面、压缩、格式、素材、文案。5个自研工具已嵌入，本地处理零上传。</p>
     </div>
 
     <div class="bento-grid">
@@ -240,21 +240,21 @@
           <button class="btn-ghost" onclick="openConvertModal()">🔄 格式转换</button>
         </div>
       </div>
-      <!-- 4. 跨境主图适配 -->
+      <!-- 4. 跨境主图适配（已升级自研） -->
       <div class="bento-card card-4">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
         <div class="card-title">🌍 跨境适配</div>
-        <div class="card-desc">亚马逊/速卖通/Shopee白底图规范，自动匹配尺寸。</div>
+        <div class="card-desc">亚马逊/速卖通/Shopee/Lazada白底图规范，一键生成。自研每月免费3次。</div>
         <div class="card-actions">
-          <button class="btn-outline" onclick="alert('跨境尺寸规范已内置，使用一键上架选择平台。')">📦 一键适配</button>
-          <button class="btn-ghost" onclick="alert('即将跳转到跨境规范速查表。')">📋 规范速查</button>
+          <button class="btn-outline" onclick="openCrossModal()">📦 自研适配</button>
+          <button class="btn-ghost" onclick="openListingModal()">📐 国内尺寸</button>
         </div>
       </div>
-      <!-- 5. 短视频封面（已升级为自研） -->
+      <!-- 5. 短视频封面 -->
       <div class="bento-card card-5">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
         <div class="card-title">🎬 封面生成</div>
-        <div class="card-desc">抖音/快手/小红书视频封面提取+文字叠加，自研工具每月免费3次。</div>
+        <div class="card-desc">抖音/快手/小红书视频封面提取+文字叠加，自研每月免费3次。</div>
         <div class="card-actions">
           <button class="btn-outline" onclick="openCoverModal()">🎥 提取封面</button>
           <button class="btn-ghost" onclick="openListingModal()">📐 封面尺寸</button>
@@ -274,7 +274,7 @@
       <div class="bento-card card-7">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg></div>
         <div class="card-title">🔄 格式转换</div>
-        <div class="card-desc">JPG/PNG/WebP互转，满足各平台上传格式要求。自研转换每月免费5次。</div>
+        <div class="card-desc">JPG/PNG/WebP互转，满足各平台上传格式要求。自研每月免费5次。</div>
         <div class="card-actions">
           <button class="btn-outline" onclick="openConvertModal()">🚀 自研转换</button>
           <a href="https://convertio.co/zh/" target="_blank" class="btn-ghost">Convertio →</a>
@@ -390,7 +390,7 @@
     </div>
   </div>
 
-  <!-- 短视频封面提取模态窗口（新增） -->
+  <!-- 短视频封面提取模态窗口 -->
   <div class="modal-overlay" id="coverModal">
     <div class="modal">
       <div class="modal-header"><h3>🎬 短视频封面提取</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
@@ -418,6 +418,34 @@
         <div class="paywall" id="coverPaywall" style="display:none;">
           <div class="price">¥9.9<span style="font-size:1rem;">/月</span></div>
           <p>本月免费提取次数已用完</p><p>升级会员，无限次视频封面提取</p>
+          <button class="btn-primary" onclick="alert('请联系客服开通会员，微信：xiuxiutu_vip')">📱 联系客服升级</button>
+          <p class="small-text">开通后刷新页面即可继续使用</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 跨境主图适配模态窗口（新增） -->
+  <div class="modal-overlay" id="crossModal">
+    <div class="modal">
+      <div class="modal-header"><h3>🌍 跨境主图适配</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
+      <div id="crossContent" style="position:relative;">
+        <div class="upload-area" id="crossUpload" onclick="document.getElementById('crossFileInput').click()">
+          <p>📤 点击上传商品主图</p>
+          <p class="small-text">本月剩余免费次数 <span id="crossRemaining">3</span></p>
+        </div>
+        <input type="file" id="crossFileInput" accept="image/*" hidden onchange="handleCrossUpload(event)">
+        <div class="platform-select" id="crossPlatformSelect" style="display:none;">
+          <label class="platform-check"><input type="checkbox" value="amazon" checked> 亚马逊 (2000x2000)</label>
+          <label class="platform-check"><input type="checkbox" value="aliexpress" checked> 速卖通 (800x800)</label>
+          <label class="platform-check"><input type="checkbox" value="shopee" checked> Shopee (800x800)</label>
+          <label class="platform-check"><input type="checkbox" value="lazada"> Lazada (800x800)</label>
+        </div>
+        <button class="btn-outline" id="crossGenerateBtn" style="display:none;" onclick="generateCrossImages()">✨ 生成各平台图片</button>
+        <div class="download-grid" id="crossDownloadGrid"></div>
+        <div class="paywall" id="crossPaywall" style="display:none;">
+          <div class="price">¥9.9<span style="font-size:1rem;">/月</span></div>
+          <p>本月免费适配次数已用完</p><p>升级会员，无限次生成跨境图片包</p>
           <button class="btn-primary" onclick="alert('请联系客服开通会员，微信：xiuxiutu_vip')">📱 联系客服升级</button>
           <p class="small-text">开通后刷新页面即可继续使用</p>
         </div>
@@ -513,6 +541,11 @@
       document.getElementById('coverFileInput').value = '';
       const video = document.getElementById('coverVideo');
       if (video) video.pause();
+      // 清理跨境
+      document.getElementById('crossDownloadGrid').innerHTML = '';
+      document.getElementById('crossPlatformSelect').style.display = 'none';
+      document.getElementById('crossGenerateBtn').style.display = 'none';
+      document.getElementById('crossFileInput').value = '';
     }
 
     // ========== 各工具打开逻辑 ==========
@@ -558,6 +591,17 @@
       } else {
         document.getElementById('coverPaywall').style.display = 'none';
         document.getElementById('coverUpload').style.pointerEvents = 'auto';
+      }
+    }
+    function openCrossModal() {
+      document.getElementById('crossModal').classList.add('active');
+      document.getElementById('crossRemaining').textContent = remainingCount('cross', 3);
+      if (!isWithinLimit('cross', 3)) {
+        document.getElementById('crossPaywall').style.display = 'flex';
+        document.getElementById('crossUpload').style.pointerEvents = 'none';
+      } else {
+        document.getElementById('crossPaywall').style.display = 'none';
+        document.getElementById('crossUpload').style.pointerEvents = 'auto';
       }
     }
 
@@ -691,7 +735,7 @@
       reader.readAsDataURL(convertFile);
     }
 
-    // ========== 短视频封面提取（新增） ==========
+    // ========== 短视频封面提取 ==========
     let coverVideoElement = null;
     function handleCoverUpload(event) {
       if (!isWithinLimit('cover', 3)) { openCoverModal(); return; }
@@ -701,7 +745,6 @@
       const video = document.getElementById('coverVideo');
       const url = URL.createObjectURL(file);
       video.src = url;
-      video.style.display = 'block';
       document.getElementById('coverVideoContainer').style.display = 'block';
       document.getElementById('coverSeekBar').style.display = 'flex';
       document.getElementById('coverTextControls').style.display = 'flex';
@@ -726,7 +769,6 @@
       canvas.height = video.videoHeight;
       const ctx = canvas.getContext('2d');
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      // 添加文字
       const text = document.getElementById('coverTextInput').value.trim();
       if (text) {
         const color = document.getElementById('coverTextColor').value;
@@ -749,6 +791,61 @@
       };
       incrementCount('cover');
       document.getElementById('coverRemaining').textContent = remainingCount('cover', 3);
+    }
+
+    // ========== 跨境主图适配（新增） ==========
+    const crossPlatforms = {
+      amazon: { width: 2000, height: 2000, name: '亚马逊主图' },
+      aliexpress: { width: 800, height: 800, name: '速卖通主图' },
+      shopee: { width: 800, height: 800, name: 'Shopee主图' },
+      lazada: { width: 800, height: 800, name: 'Lazada主图' }
+    };
+    let crossUploadedImage = null;
+    function handleCrossUpload(event) {
+      if (!isWithinLimit('cross', 3)) { openCrossModal(); return; }
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          crossUploadedImage = img;
+          document.getElementById('crossPlatformSelect').style.display = 'flex';
+          document.getElementById('crossGenerateBtn').style.display = 'inline-flex';
+          document.getElementById('crossUpload').innerHTML = '<p>✅ 图片已就绪，请选择跨境平台并生成</p>';
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+    function generateCrossImages() {
+      if (!crossUploadedImage) return;
+      const selected = Array.from(document.querySelectorAll('#crossPlatformSelect input:checked')).map(cb => cb.value);
+      if (selected.length === 0) { alert('请至少选择一个平台'); return; }
+      const grid = document.getElementById('crossDownloadGrid');
+      grid.innerHTML = '';
+      selected.forEach(key => {
+        const plat = crossPlatforms[key];
+        const canvas = document.createElement('canvas');
+        canvas.width = plat.width; canvas.height = plat.height;
+        const ctx = canvas.getContext('2d');
+        const imgRatio = crossUploadedImage.width / crossUploadedImage.height;
+        const targetRatio = plat.width / plat.height;
+        let sx, sy, sw, sh;
+        if (imgRatio > targetRatio) {
+          sh = crossUploadedImage.height; sw = sh * targetRatio; sx = (crossUploadedImage.width - sw) / 2; sy = 0;
+        } else {
+          sw = crossUploadedImage.width; sh = sw / targetRatio; sx = 0; sy = (crossUploadedImage.height - sh) / 2;
+        }
+        ctx.drawImage(crossUploadedImage, sx, sy, sw, sh, 0, 0, plat.width, plat.height);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+        const item = document.createElement('div');
+        item.className = 'download-item';
+        item.innerHTML = `<img src="${dataUrl}" alt="${plat.name}"><p>${plat.name}</p><a href="${dataUrl}" download="${plat.name}.jpg" class="btn-ghost" style="font-size:0.8rem;">下载</a>`;
+        grid.appendChild(item);
+      });
+      incrementCount('cross');
+      document.getElementById('crossRemaining').textContent = remainingCount('cross', 3);
     }
   </script>
 </body>
