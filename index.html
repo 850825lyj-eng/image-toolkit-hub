@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>修修图 · 电商AI美工百宝箱 | 免费抠图 · 主图模板 · 批量改尺寸</title>
-  <meta name="description" content="修修图电商AI美工百宝箱，聚合免费抠图、AI主图模板、批量改尺寸、跨境适配、短视频封面工具。一站式解决电商卖家图片处理需求。">
+  <title>修修图 · 电商AI美工百宝箱 | 9大免费工具聚合</title>
+  <meta name="description" content="修修图电商AI美工百宝箱，聚合免费抠图、AI主图模板、批量改尺寸、跨境适配、短视频封面、在线压缩、格式转换、素材库、文案助手。一站式解决电商卖家图片与内容需求。">
   <style>
-    /* ============ CSS 变量 (浅色/深色主题) ============ */
     :root {
       --bg: #fcfcfc;
       --surface: #ffffff;
@@ -23,8 +22,12 @@
       --radius: 12px;
       --radius-sm: 8px;
       --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      /* 九种卡片渐变 */
       --card-1: #f8f7ff; --card-2: #fff5f5; --card-3: #f5fff7; --card-4: #fff9f0; --card-5: #f5f9ff;
-      --card-1-border: #e8e5ff; --card-2-border: #ffe0e0; --card-3-border: #d4f5da; --card-4-border: #ffeacc; --card-5-border: #d4e5ff;
+      --card-6: #fdf2f8; --card-7: #f0fdf4; --card-8: #fef2f2; --card-9: #f5f3ff;
+      --card-1-border: #e8e5ff; --card-2-border: #ffe0e0; --card-3-border: #d4f5da; --card-4-border: #ffeacc;
+      --card-5-border: #d4e5ff; --card-6-border: #fbcfe8; --card-7-border: #bbf7d0; --card-8-border: #fecaca;
+      --card-9-border: #ddd6fe;
     }
     body.dark {
       --bg: #0f172a; --surface: #1e293b; --surface-hover: #273449;
@@ -33,7 +36,10 @@
       --shadow-xs: 0 1px 2px rgba(0,0,0,0.2); --shadow-sm: 0 2px 8px rgba(0,0,0,0.25);
       --accent-light: #312e81;
       --card-1: #1e1b4b; --card-2: #3b1e1e; --card-3: #1a3b1e; --card-4: #3b2e1a; --card-5: #1a2e3b;
-      --card-1-border: #312e81; --card-2-border: #5c2a2a; --card-3-border: #2a5c2e; --card-4-border: #5c4a2a; --card-5-border: #2a4a5c;
+      --card-6: #3b1e3b; --card-7: #1a3b2e; --card-8: #3b2a2a; --card-9: #2a1e3b;
+      --card-1-border: #312e81; --card-2-border: #5c2a2a; --card-3-border: #2a5c2e; --card-4-border: #5c4a2a;
+      --card-5-border: #2a4a5c; --card-6-border: #5c2a5c; --card-7-border: #2a5c4a; --card-8-border: #5c3a3a;
+      --card-9-border: #3a2a5c;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -72,7 +78,7 @@
     .theme-toggle:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
     .hero { text-align: center; margin-bottom: 40px; }
     .hero h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.5px; color: var(--text-primary); margin-bottom: 8px; }
-    .hero p { font-size: 1rem; color: var(--text-secondary); max-width: 550px; margin: 0 auto; }
+    .hero p { font-size: 1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
     .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     @media (max-width: 900px) { .bento-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 600px) {
@@ -89,11 +95,15 @@
       box-shadow: var(--shadow-xs); cursor: default;
     }
     .bento-card:hover { box-shadow: var(--shadow-sm); border-color: var(--border-light); transform: translateY(-2px); background: var(--surface-hover); }
-    .bento-card.card-1 { background: linear-gradient(135deg, var(--card-1) 0%, var(--surface) 100%); border-color: var(--card-1-border); }
-    .bento-card.card-2 { background: linear-gradient(135deg, var(--card-2) 0%, var(--surface) 100%); border-color: var(--card-2-border); }
-    .bento-card.card-3 { background: linear-gradient(135deg, var(--card-3) 0%, var(--surface) 100%); border-color: var(--card-3-border); }
-    .bento-card.card-4 { background: linear-gradient(135deg, var(--card-4) 0%, var(--surface) 100%); border-color: var(--card-4-border); }
-    .bento-card.card-5 { background: linear-gradient(135deg, var(--card-5) 0%, var(--surface) 100%); border-color: var(--card-5-border); }
+    .card-1 { background: linear-gradient(135deg, var(--card-1) 0%, var(--surface) 100%); border-color: var(--card-1-border); }
+    .card-2 { background: linear-gradient(135deg, var(--card-2) 0%, var(--surface) 100%); border-color: var(--card-2-border); }
+    .card-3 { background: linear-gradient(135deg, var(--card-3) 0%, var(--surface) 100%); border-color: var(--card-3-border); }
+    .card-4 { background: linear-gradient(135deg, var(--card-4) 0%, var(--surface) 100%); border-color: var(--card-4-border); }
+    .card-5 { background: linear-gradient(135deg, var(--card-5) 0%, var(--surface) 100%); border-color: var(--card-5-border); }
+    .card-6 { background: linear-gradient(135deg, var(--card-6) 0%, var(--surface) 100%); border-color: var(--card-6-border); }
+    .card-7 { background: linear-gradient(135deg, var(--card-7) 0%, var(--surface) 100%); border-color: var(--card-7-border); }
+    .card-8 { background: linear-gradient(135deg, var(--card-8) 0%, var(--surface) 100%); border-color: var(--card-8-border); }
+    .card-9 { background: linear-gradient(135deg, var(--card-9) 0%, var(--surface) 100%); border-color: var(--card-9-border); }
     .card-icon {
       width: 44px; height: 44px; border-radius: var(--radius-sm); display: flex; align-items: center;
       justify-content: center; font-size: 1.4rem; background: var(--accent-light); color: var(--accent); flex-shrink: 0;
@@ -124,7 +134,7 @@
         <span>修修图<span style="color:var(--accent);">·美工百宝箱</span></span>
       </div>
       <div class="nav-tabs" id="navTabs">
-        <button class="nav-tab active" data-platform="all">🔥 全部工具</button>
+        <button class="nav-tab active" data-platform="all">🔥 全部</button>
         <button class="nav-tab" data-platform="pdd">📱 拼多多</button>
         <button class="nav-tab" data-platform="taobao">🍑 淘宝</button>
         <button class="nav-tab" data-platform="douyin">🎵 抖店</button>
@@ -136,77 +146,116 @@
 
     <div class="hero">
       <h1>电商AI美工百宝箱</h1>
-      <p>聚合免费抠图、主图模板、批量改尺寸、跨境适配、短视频封面工具，一站式解决你的电商图片需求。</p>
+      <p>9大免费工具聚合：抠图、模板、尺寸、跨境、封面、压缩、格式、素材、文案。一站式工作台，让电商图片处理零门槛。</p>
     </div>
 
     <div class="bento-grid">
+      <!-- 1. 免费抠图合集 -->
       <div class="bento-card card-1">
         <div class="card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="2.5"/><path d="M21 15l-5-5L5 21"/>
-          </svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="2.5"/><path d="M21 15l-5-5L5 21"/></svg>
         </div>
-        <div class="card-title">🖼️ 免费抠图合集</div>
-        <div class="card-desc">聚合 remove.bg、顽兔抠图、稿定抠图等免费工具，一键跳转。支持电商白底图批量处理。</div>
+        <div class="card-title">🖼️ 免费抠图</div>
+        <div class="card-desc">remove.bg、稿定抠图、顽兔抠图，一键去背景生成白底图。</div>
         <div class="card-actions">
-          <a href="https://www.remove.bg/zh" target="_blank" rel="noopener" class="btn-outline">remove.bg 抠图</a>
-          <a href="https://www.gaoding.com/koutu" target="_blank" rel="noopener" class="btn-ghost">稿定抠图 →</a>
+          <a href="https://www.remove.bg/zh" target="_blank" class="btn-outline">remove.bg</a>
+          <a href="https://www.gaoding.com/koutu" target="_blank" class="btn-ghost">稿定抠图 →</a>
         </div>
       </div>
-
+      <!-- 2. AI主图模板 -->
       <div class="bento-card card-2">
         <div class="card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-          </svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         </div>
-        <div class="card-title">🎨 AI主图模板库</div>
-        <div class="card-desc">按行业类目预制爆款主图模板：服装、美妆、食品、3C。一键套用，快速生成高点击率主图。</div>
+        <div class="card-title">🎨 AI模板库</div>
+        <div class="card-desc">按服装/美妆/食品/3C预制爆款模板，快速出图。</div>
         <div class="card-actions">
-          <a href="https://www.gaoding.com/templates" target="_blank" rel="noopener" class="btn-outline">稿定模板</a>
-          <a href="https://www.canva.cn" target="_blank" rel="noopener" class="btn-ghost">Canva →</a>
+          <a href="https://www.gaoding.com/templates" target="_blank" class="btn-outline">稿定模板</a>
+          <a href="https://www.canva.cn" target="_blank" class="btn-ghost">Canva →</a>
         </div>
       </div>
-
+      <!-- 3. 批量改尺寸 -->
       <div class="bento-card card-3">
         <div class="card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/>
-          </svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
         </div>
-        <div class="card-title">📐 批量改尺寸</div>
-        <div class="card-desc">内置淘宝、拼多多、抖音、京东等全平台尺寸规范。上传图片自动裁剪，无需手动计算。</div>
+        <div class="card-title">📐 改尺寸</div>
+        <div class="card-desc">淘宝/拼多多/抖音全平台尺寸预设，一键裁剪适配。</div>
         <div class="card-actions">
-          <button class="btn-outline" onclick="alert('🎉 内置「一键上架」功能已就绪，请切换到电商工作台使用完整版。')">📦 一键上架</button>
+          <button class="btn-outline" onclick="alert('内置尺寸工坊，请使用「一键上架」完整版。')">📦 一键上架</button>
           <button class="btn-ghost" onclick="alert('即将跳转到格式转换工具。')">🔄 格式转换</button>
         </div>
       </div>
-
+      <!-- 4. 跨境主图适配 -->
       <div class="bento-card card-4">
         <div class="card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-          </svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         </div>
-        <div class="card-title">🌍 跨境主图适配</div>
-        <div class="card-desc">亚马逊、速卖通、Shopee、Lazada 白底图规范。自动适配各平台尺寸和格式要求。</div>
+        <div class="card-title">🌍 跨境适配</div>
+        <div class="card-desc">亚马逊/速卖通/Shopee白底图规范，自动匹配尺寸。</div>
         <div class="card-actions">
-          <button class="btn-outline" onclick="alert('跨境平台尺寸规范已内置，请使用「一键上架」功能选择亚马逊等平台。')">📦 一键适配</button>
-          <button class="btn-ghost" onclick="alert('即将跳转到跨境主图规范速查表。')">📋 规范速查</button>
+          <button class="btn-outline" onclick="alert('跨境尺寸规范已内置，使用一键上架选择平台。')">📦 一键适配</button>
+          <button class="btn-ghost" onclick="alert('即将跳转到跨境规范速查表。')">📋 规范速查</button>
         </div>
       </div>
-
+      <!-- 5. 短视频封面 -->
       <div class="bento-card card-5">
         <div class="card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="5 3 19 12 5 21 5 3"/>
-          </svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5 3 19 12 5 21 5 3"/></svg>
         </div>
-        <div class="card-title">🎬 短视频封面生成</div>
-        <div class="card-desc">抖音、快手、小红书视频封面一键生成。支持从视频提取封面帧 + 文字叠加。</div>
+        <div class="card-title">🎬 封面生成</div>
+        <div class="card-desc">抖音/快手/小红书视频封面提取+文字叠加，快速出图。</div>
         <div class="card-actions">
-          <button class="btn-outline" onclick="alert('短视频封面生成功能开发中，敬请期待。')">🎥 提取封面</button>
-          <button class="btn-ghost" onclick="alert('请使用电商工作台的「一键上架」功能生成各平台封面尺寸。')">📐 封面尺寸</button>
+          <button class="btn-outline" onclick="alert('短视频封面生成即将上线。')">🎥 提取封面</button>
+          <button class="btn-ghost" onclick="alert('请使用电商工作台的一键上架功能。')">📐 封面尺寸</button>
+        </div>
+      </div>
+      <!-- 6. 在线压缩 -->
+      <div class="bento-card card-6">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div class="card-title">🗜️ 图片压缩</div>
+        <div class="card-desc">TinyPNG、Squoosh 无损压缩，上传体积大自动瘦身。</div>
+        <div class="card-actions">
+          <a href="https://tinypng.com" target="_blank" class="btn-outline">TinyPNG</a>
+          <a href="https://squoosh.app" target="_blank" class="btn-ghost">Squoosh →</a>
+        </div>
+      </div>
+      <!-- 7. 格式转换 -->
+      <div class="bento-card card-7">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+        </div>
+        <div class="card-title">🔄 格式转换</div>
+        <div class="card-desc">JPG/PNG/WebP互转，满足各平台上传格式要求。</div>
+        <div class="card-actions">
+          <button class="btn-outline" onclick="alert('格式转换功能即将开放，敬请期待。')">开始转换</button>
+          <a href="https://convertio.co/zh/" target="_blank" class="btn-ghost">Convertio →</a>
+        </div>
+      </div>
+      <!-- 8. 免费素材库 -->
+      <div class="bento-card card-8">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <div class="card-title">📸 免费素材</div>
+        <div class="card-desc">Pexels、Unsplash、Pixabay 可商用图片/视频素材。</div>
+        <div class="card-actions">
+          <a href="https://www.pexels.com/zh-cn/" target="_blank" class="btn-outline">Pexels</a>
+          <a href="https://unsplash.com" target="_blank" class="btn-ghost">Unsplash →</a>
+        </div>
+      </div>
+      <!-- 9. 电商文案 -->
+      <div class="bento-card card-9">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <div class="card-title">✍️ 电商文案</div>
+        <div class="card-desc">阿里妈妈智能文案、句易网，生成标题和详情页文案。</div>
+        <div class="card-actions">
+          <a href="https://chuangyi.taobao.com" target="_blank" class="btn-outline">阿里妈妈</a>
+          <a href="https://www.ju1.cn" target="_blank" class="btn-ghost">句易网 →</a>
         </div>
       </div>
     </div>
@@ -239,7 +288,7 @@
         if (!tab) return;
         allTabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
-        console.log(`[修修图] 已切换到分类：${tab.dataset.platform === 'all' ? '全部工具' : tab.dataset.platform}`);
+        console.log(`[修修图] 分类切换：${tab.dataset.platform}`);
       });
 
       document.querySelectorAll('.bento-card button, .bento-card .btn-outline, .bento-card .btn-ghost').forEach(btn => {
