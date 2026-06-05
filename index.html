@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>修修图 · 电商AI美工百宝箱 | 9大免费工具聚合</title>
-  <meta name="description" content="修修图电商AI美工百宝箱，6个自研工具 + 3个外部导航。图片压缩、一键上架、格式转换、封面提取、跨境适配、电商文案，本地处理零上传。">
+  <title>修修图 · 电商AI美工百宝箱 | 6大自研工具聚合</title>
+  <meta name="description" content="修修图电商AI美工百宝箱，6个自研工具：图片压缩、一键上架、格式转换、封面提取、跨境适配、电商文案。本地处理零上传。">
   <style>
     :root {
       --bg: #fcfcfc;
@@ -22,11 +22,6 @@
       --radius: 12px;
       --radius-sm: 8px;
       --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      --card-1: #f8f7ff; --card-2: #fff5f5; --card-3: #f5fff7; --card-4: #fff9f0; --card-5: #f5f9ff;
-      --card-6: #fdf2f8; --card-7: #f0fdf4; --card-8: #fef2f2; --card-9: #f5f3ff;
-      --card-1-border: #e8e5ff; --card-2-border: #ffe0e0; --card-3-border: #d4f5da; --card-4-border: #ffeacc;
-      --card-5-border: #d4e5ff; --card-6-border: #fbcfe8; --card-7-border: #bbf7d0; --card-8-border: #fecaca;
-      --card-9-border: #ddd6fe;
     }
     body.dark {
       --bg: #0f172a; --surface: #1e293b; --surface-hover: #273449;
@@ -34,11 +29,6 @@
       --border: #1e293b; --border-light: #334155;
       --shadow-xs: 0 1px 2px rgba(0,0,0,0.2); --shadow-sm: 0 2px 8px rgba(0,0,0,0.25);
       --accent-light: #312e81;
-      --card-1: #1e1b4b; --card-2: #3b1e1e; --card-3: #1a3b1e; --card-4: #3b2e1a; --card-5: #1a2e3b;
-      --card-6: #3b1e3b; --card-7: #1a3b2e; --card-8: #3b2a2a; --card-9: #2a1e3b;
-      --card-1-border: #312e81; --card-2-border: #5c2a2a; --card-3-border: #2a5c2e; --card-4-border: #5c4a2a;
-      --card-5-border: #2a4a5c; --card-6-border: #5c2a5c; --card-7-border: #2a5c4a; --card-8-border: #5c3a3a;
-      --card-9-border: #3a2a5c;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -98,15 +88,6 @@
       box-shadow: var(--shadow-xs); cursor: default;
     }
     .bento-card:hover { box-shadow: var(--shadow-sm); border-color: var(--border-light); transform: translateY(-2px); background: var(--surface-hover); }
-    .card-1 { background: linear-gradient(135deg, var(--card-1) 0%, var(--surface) 100%); border-color: var(--card-1-border); }
-    .card-2 { background: linear-gradient(135deg, var(--card-2) 0%, var(--surface) 100%); border-color: var(--card-2-border); }
-    .card-3 { background: linear-gradient(135deg, var(--card-3) 0%, var(--surface) 100%); border-color: var(--card-3-border); }
-    .card-4 { background: linear-gradient(135deg, var(--card-4) 0%, var(--surface) 100%); border-color: var(--card-4-border); }
-    .card-5 { background: linear-gradient(135deg, var(--card-5) 0%, var(--surface) 100%); border-color: var(--card-5-border); }
-    .card-6 { background: linear-gradient(135deg, var(--card-6) 0%, var(--surface) 100%); border-color: var(--card-6-border); }
-    .card-7 { background: linear-gradient(135deg, var(--card-7) 0%, var(--surface) 100%); border-color: var(--card-7-border); }
-    .card-8 { background: linear-gradient(135deg, var(--card-8) 0%, var(--surface) 100%); border-color: var(--card-8-border); }
-    .card-9 { background: linear-gradient(135deg, var(--card-9) 0%, var(--surface) 100%); border-color: var(--card-9-border); }
     .card-icon {
       width: 44px; height: 44px; border-radius: var(--radius-sm); display: flex; align-items: center;
       justify-content: center; font-size: 1.4rem; background: var(--accent-light); color: var(--accent); flex-shrink: 0;
@@ -161,7 +142,7 @@
     .format-select, .text-controls, .copywriting-form {
       display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
     }
-    .format-select select, .text-controls input[type="text"], .copywriting-form select, .copywriting-form input[type="text"] {
+    .format-select select, .text-controls input[type="text"], .copywriting-form input[type="text"] {
       padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-light);
       background: var(--surface); color: var(--text-primary); font-size: 0.9rem;
     }
@@ -180,23 +161,13 @@
       font-size: 0.8rem; cursor: pointer; border: none; transition: all var(--transition);
     }
     .copywriting-tag:hover { background: var(--accent); color: white; }
-
-    /* 会员弹窗样式 */
-    .membership-plans {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+    .small-text { font-size: 0.8rem; color: var(--text-muted); }
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #f59e0b; color: white;
+      padding: 12px 24px; border-radius: 30px; font-weight: 600; z-index: 2000; opacity: 0; transition: opacity 0.3s;
+      pointer-events: none; white-space: nowrap;
     }
-    @media (max-width: 500px) { .membership-plans { grid-template-columns: 1fr; } }
-    .plan-card {
-      border: 1.5px solid var(--border-light); border-radius: var(--radius); padding: 20px;
-      text-align: center; background: var(--surface); transition: border-color var(--transition);
-    }
-    .plan-card.recommended { border-color: var(--accent); background: var(--accent-light); }
-    .plan-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
-    .plan-price { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
-    .plan-desc { font-size: 0.85rem; color: var(--text-secondary); margin: 8px 0; }
-    .plan-features { list-style: none; font-size: 0.8rem; color: var(--text-muted); margin: 10px 0; }
-    .plan-features li::before { content: "✓ "; color: var(--accent); font-weight: bold; }
-    .btn-outline.plan-btn { width: 100%; justify-content: center; }
+    .toast.show { opacity: 1; }
   </style>
 </head>
 <body>
@@ -223,8 +194,8 @@
     </div>
 
     <div class="bento-grid">
-      <!-- 卡片 1-8 同上，仅第9个显示自研文案，其余不变 -->
-      <div class="bento-card card-1">
+      <!-- 卡片1：免费抠图 -->
+      <div class="bento-card">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="2.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
         <div class="card-title">🖼️ 免费抠图</div>
         <div class="card-desc">remove.bg、稿定抠图，一键去背景生成白底图。</div>
@@ -233,7 +204,8 @@
           <a href="https://www.gaoding.com/koutu" target="_blank" class="btn-ghost">稿定抠图 →</a>
         </div>
       </div>
-      <div class="bento-card card-2">
+      <!-- 卡片2：AI模板库 -->
+      <div class="bento-card">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
         <div class="card-title">🎨 AI模板库</div>
         <div class="card-desc">按服装/美妆/食品/3C预制爆款模板，快速出图。</div>
@@ -242,7 +214,8 @@
           <a href="https://www.canva.cn" target="_blank" class="btn-ghost">Canva →</a>
         </div>
       </div>
-      <div class="bento-card card-3">
+      <!-- 卡片3：改尺寸 -->
+      <div class="bento-card">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div>
         <div class="card-title">📐 改尺寸</div>
         <div class="card-desc">淘宝/拼多多/抖音全平台尺寸预设，一键裁剪。自研每月免费3次。</div>
@@ -251,7 +224,8 @@
           <button class="btn-ghost" onclick="openConvertModal()">🔄 格式转换</button>
         </div>
       </div>
-      <div class="bento-card card-4">
+      <!-- 卡片4：跨境适配 -->
+      <div class="bento-card">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
         <div class="card-title">🌍 跨境适配</div>
         <div class="card-desc">亚马逊/速卖通/Shopee/Lazada白底图规范。自研每月免费3次。</div>
@@ -260,7 +234,8 @@
           <button class="btn-ghost" onclick="openListingModal()">📐 国内尺寸</button>
         </div>
       </div>
-      <div class="bento-card card-5">
+      <!-- 卡片5：封面生成 -->
+      <div class="bento-card">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
         <div class="card-title">🎬 封面生成</div>
         <div class="card-desc">视频封面提取+文字叠加，自研每月免费3次。</div>
@@ -269,16 +244,18 @@
           <button class="btn-ghost" onclick="openListingModal()">📐 封面尺寸</button>
         </div>
       </div>
-      <div class="bento-card card-6">
+      <!-- 卡片6：图片压缩 -->
+      <div class="bento-card">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
         <div class="card-title">🗜️ 图片压缩</div>
-        <div class="card-desc">自研Canvas本地压缩，每月免费5次。TinyPNG备用。</div>
+        <div class="card-desc">自研Canvas本地压缩，每月免费5次。</div>
         <div class="card-actions">
           <button class="btn-outline" onclick="openCompressModal()">🚀 自研压缩</button>
           <a href="https://tinypng.com" target="_blank" class="btn-ghost">TinyPNG →</a>
         </div>
       </div>
-      <div class="bento-card card-7">
+      <!-- 卡片7：格式转换 -->
+      <div class="bento-card">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg></div>
         <div class="card-title">🔄 格式转换</div>
         <div class="card-desc">JPG/PNG/WebP互转，自研每月免费5次。</div>
@@ -287,7 +264,8 @@
           <a href="https://convertio.co/zh/" target="_blank" class="btn-ghost">Convertio →</a>
         </div>
       </div>
-      <div class="bento-card card-8">
+      <!-- 卡片8：免费素材 -->
+      <div class="bento-card">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
         <div class="card-title">📸 免费素材</div>
         <div class="card-desc">Pexels、Unsplash 可商用图片素材，免费下载。</div>
@@ -296,10 +274,11 @@
           <a href="https://unsplash.com" target="_blank" class="btn-ghost">Unsplash →</a>
         </div>
       </div>
-      <div class="bento-card card-9">
+      <!-- 卡片9：电商文案 -->
+      <div class="bento-card">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
         <div class="card-title">✍️ 电商文案</div>
-        <div class="card-desc">标题公式生成器，自研每月免费10次。阿里妈妈备用。</div>
+        <div class="card-desc">标题公式生成器，自研每月免费10次。</div>
         <div class="card-actions">
           <button class="btn-outline" onclick="openCopywritingModal()">✍️ 自研文案</button>
           <a href="https://chuangyi.taobao.com" target="_blank" class="btn-ghost">阿里妈妈 →</a>
@@ -312,175 +291,134 @@
     </div>
   </div>
 
-  <!-- 各工具模态窗口（已移除内部paywall，超限时调用公共会员弹窗） -->
+  <!-- 压缩模态窗口 -->
   <div class="modal-overlay" id="compressModal">
     <div class="modal">
       <div class="modal-header"><h3>🗜️ 自研图片压缩</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
-      <div id="compressContent">
-        <div class="upload-area" id="compressUpload" onclick="document.getElementById('compressFileInput').click()">
-          <p>📤 点击或拖拽上传图片</p>
-          <p class="small-text">支持 JPG/PNG/WebP，本月剩余免费次数 <span id="compressRemaining">5</span></p>
-        </div>
-        <input type="file" id="compressFileInput" accept="image/*" hidden onchange="handleCompressUpload(event)">
-        <div class="preview-box" id="compressPreview" style="display:none;"></div>
-        <div class="stats" id="compressStats" style="display:none;"></div>
-        <button class="btn-outline" id="compressDownloadBtn" style="display:none;">⬇️ 下载压缩图</button>
+      <div class="upload-area" id="compressUpload" onclick="document.getElementById('compressFileInput').click()">
+        <p>📤 点击或拖拽上传图片</p>
+        <p class="small-text">支持 JPG/PNG/WebP，本月剩余免费次数 <span id="compressRemaining">5</span></p>
       </div>
+      <input type="file" id="compressFileInput" accept="image/*" hidden onchange="handleCompressUpload(event)">
+      <div class="preview-box" id="compressPreview" style="display:none;"></div>
+      <div class="stats" id="compressStats" style="display:none;"></div>
+      <button class="btn-outline" id="compressDownloadBtn" style="display:none;">⬇️ 下载压缩图</button>
     </div>
   </div>
 
+  <!-- 一键上架模态窗口 -->
   <div class="modal-overlay" id="listingModal">
     <div class="modal">
       <div class="modal-header"><h3>📦 自研一键上架</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
-      <div id="listingContent">
-        <div class="upload-area" id="listingUpload" onclick="document.getElementById('listingFileInput').click()">
-          <p>📤 点击上传商品主图</p>
-          <p class="small-text">本月剩余免费次数 <span id="listingRemaining">3</span></p>
-        </div>
-        <input type="file" id="listingFileInput" accept="image/*" hidden onchange="handleListingUpload(event)">
-        <div class="platform-select" id="platformSelect" style="display:none;">
-          <label class="platform-check"><input type="checkbox" value="taobao" checked> 淘宝 (800x800)</label>
-          <label class="platform-check"><input type="checkbox" value="pdd" checked> 拼多多 (800x800)</label>
-          <label class="platform-check"><input type="checkbox" value="douyin" checked> 抖店 (800x800)</label>
-          <label class="platform-check"><input type="checkbox" value="xhs"> 小红书 (1080x1440)</label>
-        </div>
-        <button class="btn-outline" id="generateBtn" style="display:none;" onclick="generatePlatformImages()">✨ 生成各平台图片</button>
-        <div class="download-grid" id="downloadGrid"></div>
+      <div class="upload-area" id="listingUpload" onclick="document.getElementById('listingFileInput').click()">
+        <p>📤 点击上传商品主图</p>
+        <p class="small-text">本月剩余免费次数 <span id="listingRemaining">3</span></p>
       </div>
+      <input type="file" id="listingFileInput" accept="image/*" hidden onchange="handleListingUpload(event)">
+      <div class="platform-select" id="platformSelect" style="display:none;">
+        <label class="platform-check"><input type="checkbox" value="taobao" checked> 淘宝 (800x800)</label>
+        <label class="platform-check"><input type="checkbox" value="pdd" checked> 拼多多 (800x800)</label>
+        <label class="platform-check"><input type="checkbox" value="douyin" checked> 抖店 (800x800)</label>
+        <label class="platform-check"><input type="checkbox" value="xhs"> 小红书 (1080x1440)</label>
+      </div>
+      <button class="btn-outline" id="generateBtn" style="display:none;" onclick="generatePlatformImages()">✨ 生成各平台图片</button>
+      <div class="download-grid" id="downloadGrid"></div>
     </div>
   </div>
 
+  <!-- 格式转换模态窗口 -->
   <div class="modal-overlay" id="convertModal">
     <div class="modal">
       <div class="modal-header"><h3>🔄 自研格式转换</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
-      <div id="convertContent">
-        <div class="upload-area" id="convertUpload" onclick="document.getElementById('convertFileInput').click()">
-          <p>📤 点击上传图片</p>
-          <p class="small-text">支持 JPG/PNG/WebP，本月剩余免费次数 <span id="convertRemaining">5</span></p>
-        </div>
-        <input type="file" id="convertFileInput" accept="image/*" hidden onchange="handleConvertUpload(event)">
-        <div class="format-select" id="convertFormatSelect" style="display:none;">
-          <span>目标格式：</span>
-          <select id="convertTargetFormat">
-            <option value="image/jpeg">JPG</option>
-            <option value="image/png">PNG</option>
-            <option value="image/webp">WebP</option>
-          </select>
-          <button class="btn-outline" onclick="performConvert()">✨ 开始转换</button>
-        </div>
-        <div class="preview-box" id="convertPreview" style="display:none;"></div>
-        <div class="stats" id="convertStats" style="display:none;"></div>
-        <button class="btn-outline" id="convertDownloadBtn" style="display:none;">⬇️ 下载转换图</button>
+      <div class="upload-area" id="convertUpload" onclick="document.getElementById('convertFileInput').click()">
+        <p>📤 点击上传图片</p>
+        <p class="small-text">支持 JPG/PNG/WebP，本月剩余免费次数 <span id="convertRemaining">5</span></p>
       </div>
+      <input type="file" id="convertFileInput" accept="image/*" hidden onchange="handleConvertUpload(event)">
+      <div class="format-select" id="convertFormatSelect" style="display:none;">
+        <span>目标格式：</span>
+        <select id="convertTargetFormat">
+          <option value="image/jpeg">JPG</option>
+          <option value="image/png">PNG</option>
+          <option value="image/webp">WebP</option>
+        </select>
+        <button class="btn-outline" onclick="performConvert()">✨ 开始转换</button>
+      </div>
+      <div class="preview-box" id="convertPreview" style="display:none;"></div>
+      <div class="stats" id="convertStats" style="display:none;"></div>
+      <button class="btn-outline" id="convertDownloadBtn" style="display:none;">⬇️ 下载转换图</button>
     </div>
   </div>
 
+  <!-- 封面提取模态窗口 -->
   <div class="modal-overlay" id="coverModal">
     <div class="modal">
       <div class="modal-header"><h3>🎬 自研封面提取</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
-      <div id="coverContent">
-        <div class="upload-area" id="coverUpload" onclick="document.getElementById('coverFileInput').click()">
-          <p>📤 点击上传视频（MP4/MOV/WebM）</p>
-          <p class="small-text">最大100MB，本月剩余免费次数 <span id="coverRemaining">3</span></p>
-        </div>
-        <input type="file" id="coverFileInput" accept="video/*" hidden onchange="handleCoverUpload(event)">
-        <div class="video-container" id="coverVideoContainer" style="display:none;">
-          <video id="coverVideo" controls crossorigin="anonymous" style="width:100%;"></video>
-        </div>
-        <div class="seek-bar" id="coverSeekBar" style="display:none;">
-          <span>当前时间：<span id="currentTimeDisplay">0.0</span>s</span>
-          <input type="range" id="seekSlider" min="0" step="0.1" value="0">
-          <button class="btn-outline" onclick="captureFrame()">📸 抓取当前帧</button>
-        </div>
-        <div class="text-controls" id="coverTextControls" style="display:none;">
-          <input type="text" id="coverTextInput" placeholder="输入封面文字（可选）" maxlength="30">
-          <input type="color" id="coverTextColor" value="#ffffff">
-          <span class="small-text">文字颜色</span>
-        </div>
-        <div class="preview-box" id="coverPreview" style="display:none;"></div>
-        <button class="btn-outline" id="coverDownloadBtn" style="display:none;">⬇️ 下载封面图</button>
+      <div class="upload-area" id="coverUpload" onclick="document.getElementById('coverFileInput').click()">
+        <p>📤 点击上传视频（MP4/MOV/WebM）</p>
+        <p class="small-text">最大100MB，本月剩余免费次数 <span id="coverRemaining">3</span></p>
       </div>
+      <input type="file" id="coverFileInput" accept="video/*" hidden onchange="handleCoverUpload(event)">
+      <div class="video-container" id="coverVideoContainer" style="display:none;">
+        <video id="coverVideo" controls crossorigin="anonymous" style="width:100%;"></video>
+      </div>
+      <div class="seek-bar" id="coverSeekBar" style="display:none;">
+        <span>当前时间：<span id="currentTimeDisplay">0.0</span>s</span>
+        <input type="range" id="seekSlider" min="0" step="0.1" value="0">
+        <button class="btn-outline" onclick="captureFrame()">📸 抓取当前帧</button>
+      </div>
+      <div class="text-controls" id="coverTextControls" style="display:none;">
+        <input type="text" id="coverTextInput" placeholder="输入封面文字（可选）" maxlength="30">
+        <input type="color" id="coverTextColor" value="#ffffff">
+        <span class="small-text">文字颜色</span>
+      </div>
+      <div class="preview-box" id="coverPreview" style="display:none;"></div>
+      <button class="btn-outline" id="coverDownloadBtn" style="display:none;">⬇️ 下载封面图</button>
     </div>
   </div>
 
+  <!-- 跨境适配模态窗口 -->
   <div class="modal-overlay" id="crossModal">
     <div class="modal">
       <div class="modal-header"><h3>🌍 自研跨境适配</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
-      <div id="crossContent">
-        <div class="upload-area" id="crossUpload" onclick="document.getElementById('crossFileInput').click()">
-          <p>📤 点击上传商品主图</p>
-          <p class="small-text">本月剩余免费次数 <span id="crossRemaining">3</span></p>
-        </div>
-        <input type="file" id="crossFileInput" accept="image/*" hidden onchange="handleCrossUpload(event)">
-        <div class="platform-select" id="crossPlatformSelect" style="display:none;">
-          <label class="platform-check"><input type="checkbox" value="amazon" checked> 亚马逊 (2000x2000)</label>
-          <label class="platform-check"><input type="checkbox" value="aliexpress" checked> 速卖通 (800x800)</label>
-          <label class="platform-check"><input type="checkbox" value="shopee" checked> Shopee (800x800)</label>
-          <label class="platform-check"><input type="checkbox" value="lazada"> Lazada (800x800)</label>
-        </div>
-        <button class="btn-outline" id="crossGenerateBtn" style="display:none;" onclick="generateCrossImages()">✨ 生成各平台图片</button>
-        <div class="download-grid" id="crossDownloadGrid"></div>
+      <div class="upload-area" id="crossUpload" onclick="document.getElementById('crossFileInput').click()">
+        <p>📤 点击上传商品主图</p>
+        <p class="small-text">本月剩余免费次数 <span id="crossRemaining">3</span></p>
       </div>
+      <input type="file" id="crossFileInput" accept="image/*" hidden onchange="handleCrossUpload(event)">
+      <div class="platform-select" id="crossPlatformSelect" style="display:none;">
+        <label class="platform-check"><input type="checkbox" value="amazon" checked> 亚马逊 (2000x2000)</label>
+        <label class="platform-check"><input type="checkbox" value="aliexpress" checked> 速卖通 (800x800)</label>
+        <label class="platform-check"><input type="checkbox" value="shopee" checked> Shopee (800x800)</label>
+        <label class="platform-check"><input type="checkbox" value="lazada"> Lazada (800x800)</label>
+      </div>
+      <button class="btn-outline" id="crossGenerateBtn" style="display:none;" onclick="generateCrossImages()">✨ 生成各平台图片</button>
+      <div class="download-grid" id="crossDownloadGrid"></div>
     </div>
   </div>
 
+  <!-- 电商文案模态窗口 -->
   <div class="modal-overlay" id="copywritingModal">
     <div class="modal">
       <div class="modal-header"><h3>✍️ 自研电商文案</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
-      <div id="copywritingContent">
-        <p class="small-text">本月剩余免费次数 <span id="copywritingRemaining">10</span></p>
-        <div class="copywriting-templates" id="copywritingTemplates">
-          <button class="copywriting-tag" onclick="selectCopyTemplate('pdd')">拼多多风格</button>
-          <button class="copywriting-tag" onclick="selectCopyTemplate('taobao')">淘宝风格</button>
-          <button class="copywriting-tag" onclick="selectCopyTemplate('douyin')">抖音风格</button>
-          <button class="copywriting-tag" onclick="selectCopyTemplate('xhs')">小红书风格</button>
-        </div>
-        <div class="copywriting-form" id="copywritingForm" style="display:none;">
-          <input type="text" id="copyKeyword" placeholder="输入商品核心词，如：夏季连衣裙">
-          <input type="text" id="copySellingPoint" placeholder="卖点，如：显瘦、透气">
-          <button class="btn-outline" onclick="generateCopywriting()">✨ 生成文案</button>
-        </div>
-        <div class="copywriting-result" id="copywritingResult" style="display:none;"></div>
-        <button class="btn-outline" id="copywritingCopyBtn" style="display:none;" onclick="copyCopywriting()">📋 一键复制</button>
+      <p class="small-text">本月剩余免费次数 <span id="copywritingRemaining">10</span></p>
+      <div class="copywriting-templates">
+        <button class="copywriting-tag" onclick="selectCopyTemplate('pdd')">拼多多风格</button>
+        <button class="copywriting-tag" onclick="selectCopyTemplate('taobao')">淘宝风格</button>
+        <button class="copywriting-tag" onclick="selectCopyTemplate('douyin')">抖音风格</button>
+        <button class="copywriting-tag" onclick="selectCopyTemplate('xhs')">小红书风格</button>
       </div>
+      <div class="copywriting-form" id="copywritingForm" style="display:none;">
+        <input type="text" id="copyKeyword" placeholder="输入商品核心词，如：夏季连衣裙">
+        <input type="text" id="copySellingPoint" placeholder="卖点，如：显瘦、透气">
+        <button class="btn-outline" onclick="generateCopywriting()">✨ 生成文案</button>
+      </div>
+      <div class="copywriting-result" id="copywritingResult" style="display:none;"></div>
+      <button class="btn-outline" id="copywritingCopyBtn" style="display:none;" onclick="copyCopywriting()">📋 一键复制</button>
     </div>
   </div>
 
-  <!-- 公共会员订阅弹窗 -->
-  <div class="modal-overlay" id="membershipModal">
-    <div class="modal">
-      <div class="modal-header"><h3>✨ 升级会员，解锁无限次使用</h3><button class="modal-close" onclick="closeMembershipModal()">✕</button></div>
-      <div class="membership-plans">
-        <div class="plan-card">
-          <h3>🛠️ 三件套捆绑</h3>
-          <div class="plan-price">¥14.9<span style="font-size:1rem;">/月</span></div>
-          <div class="plan-desc">图片压缩 + 格式转换 + 一键上架</div>
-          <ul class="plan-features">
-            <li>无限次压缩</li>
-            <li>无限次格式转换</li>
-            <li>无限次一键上架</li>
-            <li>高清导出</li>
-          </ul>
-          <button class="btn-outline plan-btn" onclick="upgradeToPlan('bundle')">选择此套餐</button>
-        </div>
-        <div class="plan-card recommended">
-          <h3>🚀 全站通</h3>
-          <div class="plan-price">¥29.9<span style="font-size:1rem;">/月</span></div>
-          <div class="plan-desc">全部6个自研工具无限用</div>
-          <ul class="plan-features">
-            <li>压缩、转换、上架</li>
-            <li>跨境适配</li>
-            <li>封面提取</li>
-            <li>电商文案</li>
-            <li>优先客服支持</li>
-          </ul>
-          <button class="btn-outline plan-btn" onclick="upgradeToPlan('all')">选择此套餐</button>
-        </div>
-      </div>
-      <p class="small-text" style="text-align:center;margin-top:12px;">联系客服开通：<strong>微信 xiuxiutu_vip</strong> （点击复制）</p>
-      <button class="btn-ghost" onclick="copyWechat()">📋 复制微信号</button>
-    </div>
-  </div>
+  <div class="toast" id="toast"></div>
 
   <script>
     // ========== 主题、导航 ==========
@@ -505,6 +443,13 @@
         tab.classList.add('active');
       });
     })();
+
+    // ========== Toast提示 ==========
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
+    }
 
     // ========== 免费次数管理 ==========
     const STORAGE_KEY = 'xiuxiutu_usage';
@@ -542,42 +487,22 @@
       return Math.max(0, limit - getMonthlyCount(toolKey));
     }
 
-    // ========== 公共会员弹窗控制 ==========
-    function showMembershipModal() {
-      document.getElementById('membershipModal').classList.add('active');
-    }
-    function closeMembershipModal() {
-      document.getElementById('membershipModal').classList.remove('active');
-    }
-    function upgradeToPlan(plan) {
-      alert(`您选择了${plan === 'bundle' ? '三件套捆绑' : '全站通'}套餐，请联系客服微信 xiuxiutu_vip 开通。`);
-    }
-    function copyWechat() {
-      navigator.clipboard.writeText('xiuxiutu_vip').then(() => {
-        alert('客服微信已复制：xiuxiutu_vip');
-      });
-    }
-
-    // ========== 通用关闭所有工具弹窗 ==========
+    // ========== 通用关闭 ==========
     function closeModals() {
       document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
-      // 清理压缩
       document.getElementById('compressPreview').style.display = 'none';
       document.getElementById('compressStats').style.display = 'none';
       document.getElementById('compressDownloadBtn').style.display = 'none';
       document.getElementById('compressFileInput').value = '';
-      // 清理上架
       document.getElementById('downloadGrid').innerHTML = '';
       document.getElementById('platformSelect').style.display = 'none';
       document.getElementById('generateBtn').style.display = 'none';
       document.getElementById('listingFileInput').value = '';
-      // 清理转换
       document.getElementById('convertPreview').style.display = 'none';
       document.getElementById('convertStats').style.display = 'none';
       document.getElementById('convertDownloadBtn').style.display = 'none';
       document.getElementById('convertFormatSelect').style.display = 'none';
       document.getElementById('convertFileInput').value = '';
-      // 清理封面
       document.getElementById('coverVideoContainer').style.display = 'none';
       document.getElementById('coverSeekBar').style.display = 'none';
       document.getElementById('coverTextControls').style.display = 'none';
@@ -586,64 +511,50 @@
       document.getElementById('coverFileInput').value = '';
       const video = document.getElementById('coverVideo');
       if (video) video.pause();
-      // 清理跨境
       document.getElementById('crossDownloadGrid').innerHTML = '';
       document.getElementById('crossPlatformSelect').style.display = 'none';
       document.getElementById('crossGenerateBtn').style.display = 'none';
       document.getElementById('crossFileInput').value = '';
-      // 清理文案
       document.getElementById('copywritingResult').style.display = 'none';
       document.getElementById('copywritingCopyBtn').style.display = 'none';
       document.getElementById('copywritingForm').style.display = 'none';
     }
 
-    // ========== 各工具打开逻辑（超限则显示会员弹窗） ==========
+    // ========== 各工具打开（超限提示） ==========
     function openCompressModal() {
-      if (!isWithinLimit('compress', 5)) {
-        showMembershipModal(); return;
-      }
+      if (!isWithinLimit('compress', 5)) { showToast('本月免费压缩次数已用完，下月自动重置'); return; }
       document.getElementById('compressModal').classList.add('active');
       document.getElementById('compressRemaining').textContent = remainingCount('compress', 5);
     }
     function openListingModal() {
-      if (!isWithinLimit('listing', 3)) {
-        showMembershipModal(); return;
-      }
+      if (!isWithinLimit('listing', 3)) { showToast('本月免费上架次数已用完，下月自动重置'); return; }
       document.getElementById('listingModal').classList.add('active');
       document.getElementById('listingRemaining').textContent = remainingCount('listing', 3);
     }
     function openConvertModal() {
-      if (!isWithinLimit('convert', 5)) {
-        showMembershipModal(); return;
-      }
+      if (!isWithinLimit('convert', 5)) { showToast('本月免费转换次数已用完，下月自动重置'); return; }
       document.getElementById('convertModal').classList.add('active');
       document.getElementById('convertRemaining').textContent = remainingCount('convert', 5);
     }
     function openCoverModal() {
-      if (!isWithinLimit('cover', 3)) {
-        showMembershipModal(); return;
-      }
+      if (!isWithinLimit('cover', 3)) { showToast('本月免费提取次数已用完，下月自动重置'); return; }
       document.getElementById('coverModal').classList.add('active');
       document.getElementById('coverRemaining').textContent = remainingCount('cover', 3);
     }
     function openCrossModal() {
-      if (!isWithinLimit('cross', 3)) {
-        showMembershipModal(); return;
-      }
+      if (!isWithinLimit('cross', 3)) { showToast('本月免费适配次数已用完，下月自动重置'); return; }
       document.getElementById('crossModal').classList.add('active');
       document.getElementById('crossRemaining').textContent = remainingCount('cross', 3);
     }
     function openCopywritingModal() {
-      if (!isWithinLimit('copywriting', 10)) {
-        showMembershipModal(); return;
-      }
+      if (!isWithinLimit('copywriting', 10)) { showToast('本月免费生成次数已用完，下月自动重置'); return; }
       document.getElementById('copywritingModal').classList.add('active');
       document.getElementById('copywritingRemaining').textContent = remainingCount('copywriting', 10);
     }
 
     // ========== 图片压缩 ==========
     function handleCompressUpload(event) {
-      if (!isWithinLimit('compress', 5)) { showMembershipModal(); return; }
+      if (!isWithinLimit('compress', 5)) { showToast('本月免费压缩次数已用完'); return; }
       const file = event.target.files[0];
       if (!file) return;
       const reader = new FileReader();
@@ -682,7 +593,7 @@
     };
     let uploadedImage = null;
     function handleListingUpload(event) {
-      if (!isWithinLimit('listing', 3)) { showMembershipModal(); return; }
+      if (!isWithinLimit('listing', 3)) { showToast('本月免费上架次数已用完'); return; }
       const file = event.target.files[0];
       if (!file) return;
       const reader = new FileReader();
@@ -731,7 +642,7 @@
     // ========== 格式转换 ==========
     let convertFile = null;
     function handleConvertUpload(event) {
-      if (!isWithinLimit('convert', 5)) { showMembershipModal(); return; }
+      if (!isWithinLimit('convert', 5)) { showToast('本月免费转换次数已用完'); return; }
       convertFile = event.target.files[0];
       if (!convertFile) return;
       document.getElementById('convertFormatSelect').style.display = 'flex';
@@ -768,10 +679,10 @@
       reader.readAsDataURL(convertFile);
     }
 
-    // ========== 短视频封面提取 ==========
+    // ========== 封面提取 ==========
     let coverVideoElement = null;
     function handleCoverUpload(event) {
-      if (!isWithinLimit('cover', 3)) { showMembershipModal(); return; }
+      if (!isWithinLimit('cover', 3)) { showToast('本月免费提取次数已用完'); return; }
       const file = event.target.files[0];
       if (!file) return;
       if (file.size > 100 * 1024 * 1024) { alert('视频文件不能超过100MB'); return; }
@@ -826,7 +737,7 @@
       document.getElementById('coverRemaining').textContent = remainingCount('cover', 3);
     }
 
-    // ========== 跨境主图适配 ==========
+    // ========== 跨境适配 ==========
     const crossPlatforms = {
       amazon: { width: 2000, height: 2000, name: '亚马逊主图' },
       aliexpress: { width: 800, height: 800, name: '速卖通主图' },
@@ -835,7 +746,7 @@
     };
     let crossUploadedImage = null;
     function handleCrossUpload(event) {
-      if (!isWithinLimit('cross', 3)) { showMembershipModal(); return; }
+      if (!isWithinLimit('cross', 3)) { showToast('本月免费适配次数已用完'); return; }
       const file = event.target.files[0];
       if (!file) return;
       const reader = new FileReader();
@@ -881,40 +792,12 @@
       document.getElementById('crossRemaining').textContent = remainingCount('cross', 3);
     }
 
-    // ========== 电商文案生成 ==========
+    // ========== 电商文案 ==========
     const copywritingTemplates = {
-      pdd: {
-        name: '拼多多风格',
-        templates: [
-          '💥【{keyword}】清仓价！{sellingPoint}不买后悔！限时特惠抢！',
-          '🔥{keyword}，{sellingPoint}，拼着买更便宜！速抢！',
-          '💰{keyword}今天只要这个价！{sellingPoint}，手慢无！'
-        ]
-      },
-      taobao: {
-        name: '淘宝风格',
-        templates: [
-          '【新品首发】{keyword}，{sellingPoint}，品质保证，7天无理由退换',
-          '{keyword} | {sellingPoint} | 今日下单送运费险',
-          '2025新款{keyword}，{sellingPoint}，限时包邮'
-        ]
-      },
-      douyin: {
-        name: '抖音风格',
-        templates: [
-          '姐妹们！这款{keyword}真的太绝了！{sellingPoint}，速冲！',
-          '#好物推荐 这个{keyword}，{sellingPoint}，绝绝子！',
-          '快看！{keyword}，{sellingPoint}，库存不多赶紧拍！'
-        ]
-      },
-      xhs: {
-        name: '小红书风格',
-        templates: [
-          '✨被问爆的{keyword}！{sellingPoint}，谁用谁知道～',
-          '小众宝藏{keyword}，{sellingPoint}，私藏分享🤫',
-          '年度爱用{keyword}合集，{sellingPoint}，后悔没早入手'
-        ]
-      }
+      pdd: { name: '拼多多风格', templates: ['💥【{keyword}】清仓价！{sellingPoint}不买后悔！限时特惠抢！','🔥{keyword}，{sellingPoint}，拼着买更便宜！速抢！','💰{keyword}今天只要这个价！{sellingPoint}，手慢无！'] },
+      taobao: { name: '淘宝风格', templates: ['【新品首发】{keyword}，{sellingPoint}，品质保证，7天无理由退换','{keyword} | {sellingPoint} | 今日下单送运费险','2025新款{keyword}，{sellingPoint}，限时包邮'] },
+      douyin: { name: '抖音风格', templates: ['姐妹们！这款{keyword}真的太绝了！{sellingPoint}，速冲！','#好物推荐 这个{keyword}，{sellingPoint}，绝绝子！','快看！{keyword}，{sellingPoint}，库存不多赶紧拍！'] },
+      xhs: { name: '小红书风格', templates: ['✨被问爆的{keyword}！{sellingPoint}，谁用谁知道～','小众宝藏{keyword}，{sellingPoint}，私藏分享🤫','年度爱用{keyword}合集，{sellingPoint}，后悔没早入手'] }
     };
     let selectedTemplate = null;
     function selectCopyTemplate(key) {
@@ -924,7 +807,7 @@
       document.getElementById('copywritingCopyBtn').style.display = 'none';
     }
     function generateCopywriting() {
-      if (!isWithinLimit('copywriting', 10)) { showMembershipModal(); return; }
+      if (!isWithinLimit('copywriting', 10)) { showToast('本月免费生成次数已用完'); return; }
       if (!selectedTemplate) { alert('请先选择文案风格'); return; }
       const keyword = document.getElementById('copyKeyword').value.trim();
       const sellingPoint = document.getElementById('copySellingPoint').value.trim();
