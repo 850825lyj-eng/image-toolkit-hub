@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>修修图 · 电商AI美工百宝箱 | 免费抠图 · 主图模板 · 批量改尺寸</title>
+  <meta name="description" content="修修图电商AI美工百宝箱，聚合免费抠图、AI主图模板、批量改尺寸、跨境适配、短视频封面工具。一站式解决电商卖家图片处理需求。">
+  <style>
+    /* ============ CSS 变量 (浅色/深色主题) ============ */
+    :root {
+      --bg: #fcfcfc;
+      --surface: #ffffff;
+      --surface-hover: #f9fafb;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --text-muted: #94a3b8;
+      --border: #f1f5f9;
+      --border-light: #e2e8f0;
+      --shadow-xs: 0 1px 2px rgba(0,0,0,0.02);
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.03);
+      --accent: #6366f1;
+      --accent-light: #eef2ff;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --card-1: #f8f7ff; --card-2: #fff5f5; --card-3: #f5fff7; --card-4: #fff9f0; --card-5: #f5f9ff;
+      --card-1-border: #e8e5ff; --card-2-border: #ffe0e0; --card-3-border: #d4f5da; --card-4-border: #ffeacc; --card-5-border: #d4e5ff;
+    }
+    body.dark {
+      --bg: #0f172a; --surface: #1e293b; --surface-hover: #273449;
+      --text-primary: #f1f5f9; --text-secondary: #94a3b8; --text-muted: #64748b;
+      --border: #1e293b; --border-light: #334155;
+      --shadow-xs: 0 1px 2px rgba(0,0,0,0.2); --shadow-sm: 0 2px 8px rgba(0,0,0,0.25);
+      --accent-light: #312e81;
+      --card-1: #1e1b4b; --card-2: #3b1e1e; --card-3: #1a3b1e; --card-4: #3b2e1a; --card-5: #1a2e3b;
+      --card-1-border: #312e81; --card-2-border: #5c2a2a; --card-3-border: #2a5c2e; --card-4-border: #5c4a2a; --card-5-border: #2a4a5c;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Inter', 'Microsoft YaHei', sans-serif;
+      background: var(--bg); color: var(--text-primary); line-height: 1.6;
+      -webkit-font-smoothing: antialiased; transition: background var(--transition), color var(--transition);
+      padding: 0 16px 40px;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 24px 0; }
+    .navbar {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+      padding: 16px 0; border-bottom: 1px solid var(--border-light); margin-bottom: 32px;
+      position: sticky; top: 0; background: var(--bg); z-index: 10; transition: background var(--transition);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-size: 1.4rem; font-weight: 700; letter-spacing: -0.3px; color: var(--text-primary); }
+    .brand-icon {
+      width: 34px; height: 34px; border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, #6366f1, #818cf8); display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.1rem;
+    }
+    .nav-tabs {
+      display: flex; gap: 6px; flex-wrap: wrap; background: var(--surface); border-radius: 30px;
+      padding: 4px; border: 1px solid var(--border-light); box-shadow: var(--shadow-xs); transition: background var(--transition);
+    }
+    .nav-tab {
+      padding: 7px 16px; border-radius: 26px; font-size: 0.85rem; font-weight: 500; cursor: pointer;
+      transition: all var(--transition); color: var(--text-secondary); background: transparent; border: none; white-space: nowrap;
+    }
+    .nav-tab:hover { color: var(--accent); background: var(--accent-light); }
+    .nav-tab.active { background: var(--accent); color: white; font-weight: 600; box-shadow: var(--shadow-xs); }
+    .theme-toggle {
+      width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-light); background: var(--surface);
+      cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+      transition: all var(--transition); color: var(--text-secondary); box-shadow: var(--shadow-xs); flex-shrink: 0;
+    }
+    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+    .hero { text-align: center; margin-bottom: 40px; }
+    .hero h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.5px; color: var(--text-primary); margin-bottom: 8px; }
+    .hero p { font-size: 1rem; color: var(--text-secondary); max-width: 550px; margin: 0 auto; }
+    .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 900px) { .bento-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) {
+      .bento-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 1.6rem; }
+      .navbar { justify-content: center; }
+      .nav-tabs { overflow-x: auto; flex-wrap: nowrap; }
+      .nav-tab { font-size: 0.8rem; padding: 6px 12px; }
+    }
+    .bento-card {
+      background: var(--surface); border-radius: var(--radius); padding: 28px 24px;
+      border: 1px solid var(--border); transition: all var(--transition); display: flex;
+      flex-direction: column; gap: 14px; position: relative; overflow: hidden;
+      box-shadow: var(--shadow-xs); cursor: default;
+    }
+    .bento-card:hover { box-shadow: var(--shadow-sm); border-color: var(--border-light); transform: translateY(-2px); background: var(--surface-hover); }
+    .bento-card.card-1 { background: linear-gradient(135deg, var(--card-1) 0%, var(--surface) 100%); border-color: var(--card-1-border); }
+    .bento-card.card-2 { background: linear-gradient(135deg, var(--card-2) 0%, var(--surface) 100%); border-color: var(--card-2-border); }
+    .bento-card.card-3 { background: linear-gradient(135deg, var(--card-3) 0%, var(--surface) 100%); border-color: var(--card-3-border); }
+    .bento-card.card-4 { background: linear-gradient(135deg, var(--card-4) 0%, var(--surface) 100%); border-color: var(--card-4-border); }
+    .bento-card.card-5 { background: linear-gradient(135deg, var(--card-5) 0%, var(--surface) 100%); border-color: var(--card-5-border); }
+    .card-icon {
+      width: 44px; height: 44px; border-radius: var(--radius-sm); display: flex; align-items: center;
+      justify-content: center; font-size: 1.4rem; background: var(--accent-light); color: var(--accent); flex-shrink: 0;
+    }
+    .card-title { font-size: 1.15rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.2px; }
+    .card-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; flex: 1; }
+    .card-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-outline {
+      padding: 8px 18px; border-radius: 30px; font-size: 0.85rem; font-weight: 600; cursor: pointer;
+      transition: all var(--transition); background: transparent; border: 1.5px solid var(--accent);
+      color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    }
+    .btn-outline:hover { background: var(--accent); color: white; }
+    .btn-ghost {
+      padding: 8px 16px; border-radius: 30px; font-size: 0.85rem; font-weight: 500; cursor: pointer;
+      transition: all var(--transition); background: transparent; border: 1px solid var(--border-light);
+      color: var(--text-secondary); text-decoration: none; white-space: nowrap;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+    .footer { text-align: center; margin-top: 48px; padding: 24px 0; border-top: 1px solid var(--border-light); color: var(--text-muted); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar">
+      <div class="brand">
+        <div class="brand-icon">🛠️</div>
+        <span>修修图<span style="color:var(--accent);">·美工百宝箱</span></span>
+      </div>
+      <div class="nav-tabs" id="navTabs">
+        <button class="nav-tab active" data-platform="all">🔥 全部工具</button>
+        <button class="nav-tab" data-platform="pdd">📱 拼多多</button>
+        <button class="nav-tab" data-platform="taobao">🍑 淘宝</button>
+        <button class="nav-tab" data-platform="douyin">🎵 抖店</button>
+        <button class="nav-tab" data-platform="xhs">📕 小红书</button>
+        <button class="nav-tab" data-platform="cross">🌍 跨境</button>
+      </div>
+      <button class="theme-toggle" id="themeToggle" title="切换深色/浅色模式" aria-label="切换深色模式">🌙</button>
+    </nav>
+
+    <div class="hero">
+      <h1>电商AI美工百宝箱</h1>
+      <p>聚合免费抠图、主图模板、批量改尺寸、跨境适配、短视频封面工具，一站式解决你的电商图片需求。</p>
+    </div>
+
+    <div class="bento-grid">
+      <div class="bento-card card-1">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="2.5"/><path d="M21 15l-5-5L5 21"/>
+          </svg>
+        </div>
+        <div class="card-title">🖼️ 免费抠图合集</div>
+        <div class="card-desc">聚合 remove.bg、顽兔抠图、稿定抠图等免费工具，一键跳转。支持电商白底图批量处理。</div>
+        <div class="card-actions">
+          <a href="https://www.remove.bg/zh" target="_blank" rel="noopener" class="btn-outline">remove.bg 抠图</a>
+          <a href="https://www.gaoding.com/koutu" target="_blank" rel="noopener" class="btn-ghost">稿定抠图 →</a>
+        </div>
+      </div>
+
+      <div class="bento-card card-2">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <div class="card-title">🎨 AI主图模板库</div>
+        <div class="card-desc">按行业类目预制爆款主图模板：服装、美妆、食品、3C。一键套用，快速生成高点击率主图。</div>
+        <div class="card-actions">
+          <a href="https://www.gaoding.com/templates" target="_blank" rel="noopener" class="btn-outline">稿定模板</a>
+          <a href="https://www.canva.cn" target="_blank" rel="noopener" class="btn-ghost">Canva →</a>
+        </div>
+      </div>
+
+      <div class="bento-card card-3">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/>
+          </svg>
+        </div>
+        <div class="card-title">📐 批量改尺寸</div>
+        <div class="card-desc">内置淘宝、拼多多、抖音、京东等全平台尺寸规范。上传图片自动裁剪，无需手动计算。</div>
+        <div class="card-actions">
+          <button class="btn-outline" onclick="alert('🎉 内置「一键上架」功能已就绪，请切换到电商工作台使用完整版。')">📦 一键上架</button>
+          <button class="btn-ghost" onclick="alert('即将跳转到格式转换工具。')">🔄 格式转换</button>
+        </div>
+      </div>
+
+      <div class="bento-card card-4">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </div>
+        <div class="card-title">🌍 跨境主图适配</div>
+        <div class="card-desc">亚马逊、速卖通、Shopee、Lazada 白底图规范。自动适配各平台尺寸和格式要求。</div>
+        <div class="card-actions">
+          <button class="btn-outline" onclick="alert('跨境平台尺寸规范已内置，请使用「一键上架」功能选择亚马逊等平台。')">📦 一键适配</button>
+          <button class="btn-ghost" onclick="alert('即将跳转到跨境主图规范速查表。')">📋 规范速查</button>
+        </div>
+      </div>
+
+      <div class="bento-card card-5">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+        </div>
+        <div class="card-title">🎬 短视频封面生成</div>
+        <div class="card-desc">抖音、快手、小红书视频封面一键生成。支持从视频提取封面帧 + 文字叠加。</div>
+        <div class="card-actions">
+          <button class="btn-outline" onclick="alert('短视频封面生成功能开发中，敬请期待。')">🎥 提取封面</button>
+          <button class="btn-ghost" onclick="alert('请使用电商工作台的「一键上架」功能生成各平台封面尺寸。')">📐 封面尺寸</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>© 2025 修修图 Xiuxiutu · 所有工具链接均指向第三方免费服务，本站仅做导航聚合。</p>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const themeToggle = document.getElementById('themeToggle');
+      const body = document.body;
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        body.classList.add('dark');
+        themeToggle.textContent = '☀️';
+      }
+      themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark');
+        const isDark = body.classList.contains('dark');
+        themeToggle.textContent = isDark ? '☀️' : '🌙';
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+
+      const navTabs = document.getElementById('navTabs');
+      const allTabs = navTabs.querySelectorAll('.nav-tab');
+      navTabs.addEventListener('click', (e) => {
+        const tab = e.target.closest('.nav-tab');
+        if (!tab) return;
+        allTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        console.log(`[修修图] 已切换到分类：${tab.dataset.platform === 'all' ? '全部工具' : tab.dataset.platform}`);
+      });
+
+      document.querySelectorAll('.bento-card button, .bento-card .btn-outline, .bento-card .btn-ghost').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const ripple = document.createElement('span');
+          ripple.style.cssText = `
+            position: absolute; border-radius: 50%; background: rgba(99,102,241,0.3);
+            width: 20px; height: 20px; left: ${e.clientX - this.getBoundingClientRect().left - 10}px;
+            top: ${e.clientY - this.getBoundingClientRect().top - 10}px;
+            animation: ripple 0.6s ease-out; pointer-events: none;
+          `;
+          this.style.position = 'relative';
+          this.style.overflow = 'hidden';
+          this.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 600);
+        });
+      });
+
+      const style = document.createElement('style');
+      style.textContent = `@keyframes ripple { from { transform: scale(0); opacity: 1; } to { transform: scale(8); opacity: 0; } }`;
+      document.head.appendChild(style);
+    })();
+  </script>
+</body>
+</html>
