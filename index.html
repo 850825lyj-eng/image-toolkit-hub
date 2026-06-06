@@ -64,11 +64,14 @@
     .nav-icon { width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; }
     .nav-icon svg { width: 100%; height: 100%; }
     .theme-toggle {
-      width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border-light); background: var(--surface);
-      cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-      transition: all var(--transition); color: var(--text-secondary); box-shadow: var(--shadow-xs); flex-shrink: 0;
-    }
-    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 30px;
+  border: 1px solid var(--border-light); background: var(--surface);
+  cursor: pointer; font-size: 0.85rem; font-weight: 600;
+  transition: all var(--transition); color: var(--text-secondary);
+  box-shadow: var(--shadow-xs); flex-shrink: 0; white-space: nowrap;
+}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
     .hero { text-align: center; margin-bottom: 40px; }
     .hero h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.5px; color: var(--text-primary); margin-bottom: 8px; }
     .hero p { font-size: 1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
@@ -187,7 +190,7 @@
         <button class="nav-tab" data-platform="xhs"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2" fill="#FE2C55"/><text x="12" y="16" text-anchor="middle" font-size="10" font-weight="bold" fill="white">红</text></svg></span>小红书</button>
         <button class="nav-tab" data-platform="cross"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>跨境</button>
       </div>
-      <button class="theme-toggle" id="themeToggle" title="切换深色/浅色模式" aria-label="切换深色模式">🌙</button>
+      <button class="theme-toggle" id="themeToggle" title="切换深色/浅色模式" aria-label="切换深色模式">🌙 深色模式</button>
     </nav>
 
     <div class="hero">
@@ -430,13 +433,26 @@
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         body.classList.add('dark'); themeToggle.textContent = '☀️';
-      }
-      themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark');
-        const isDark = body.classList.contains('dark');
-        themeToggle.textContent = isDark ? '☀️' : '🌙';
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      });
+      (function() {
+  const themeToggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const savedTheme = localStorage.getItem('theme');
+  const setButton = (isDark) => {
+    themeToggle.innerHTML = isDark ? '☀️ 浅色模式' : '🌙 深色模式';
+  };
+  if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    body.classList.add('dark');
+    setButton(true);
+  } else {
+    setButton(false);
+  }
+  themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    const isDark = body.classList.contains('dark');
+    setButton(isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+})();
       const navTabs = document.getElementById('navTabs');
       navTabs.addEventListener('click', (e) => {
         const tab = e.target.closest('.nav-tab');
