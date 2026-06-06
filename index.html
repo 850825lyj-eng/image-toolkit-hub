@@ -94,7 +94,7 @@
     }
     .card-title { font-size: 1.15rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.2px; }
     .card-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; flex: 1; }
-    .card-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .card-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
     .btn-outline {
       padding: 8px 18px; border-radius: 30px; font-size: 0.85rem; font-weight: 600; cursor: pointer;
       transition: all var(--transition); background: transparent; border: 1.5px solid var(--accent);
@@ -131,16 +131,16 @@
       padding: 32px 16px; text-align: center; cursor: pointer; transition: background var(--transition);
     }
     .upload-area:hover { background: var(--surface-hover); }
-    .preview-box { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+    .preview-box { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; justify-content: center; }
     .preview-box img, .preview-box video { max-width: 200px; border-radius: var(--radius-sm); border: 1px solid var(--border-light); }
     .stats { font-size: 0.9rem; color: var(--text-secondary); }
-    .platform-select { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+    .platform-select { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; justify-content: center; }
     .platform-check { display: flex; align-items: center; gap: 4px; font-size: 0.85rem; }
     .download-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr)); gap: 12px; }
     .download-item { text-align: center; }
     .download-item img { width: 100%; border-radius: var(--radius-sm); border: 1px solid var(--border-light); }
     .format-select, .text-controls, .copywriting-form {
-      display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: center;
     }
     .format-select select, .text-controls input[type="text"], .copywriting-form input[type="text"] {
       padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-light);
@@ -149,19 +149,21 @@
     .text-controls input[type="color"] { width: 40px; height: 32px; border: 1px solid var(--border-light); border-radius: 6px; cursor: pointer; }
     .video-container { position: relative; margin: 8px 0; }
     .video-container video { width: 100%; border-radius: var(--radius-sm); }
-    .seek-bar { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+    .seek-bar { display: flex; align-items: center; gap: 10px; margin: 8px 0; justify-content: center; }
     .seek-bar input[type="range"] { flex: 1; }
     .copywriting-result {
       background: var(--surface-hover); border-radius: var(--radius-sm); padding: 16px;
       border: 1px solid var(--border-light); white-space: pre-wrap; font-size: 0.9rem; line-height: 1.8;
     }
-    .copywriting-templates { display: flex; gap: 8px; flex-wrap: wrap; }
+    .copywriting-templates { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
     .copywriting-tag {
       padding: 6px 12px; border-radius: 20px; background: var(--accent-light); color: var(--accent);
       font-size: 0.8rem; cursor: pointer; border: none; transition: all var(--transition);
     }
     .copywriting-tag:hover { background: var(--accent); color: white; }
     .small-text { font-size: 0.8rem; color: var(--text-muted); }
+    .btn-group { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
+    .controls { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 12px 0; }
     .toast {
       position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #f59e0b; color: white;
       padding: 12px 24px; border-radius: 30px; font-weight: 600; z-index: 2000; opacity: 0; transition: opacity 0.3s;
@@ -302,7 +304,7 @@
       <input type="file" id="compressFileInput" accept="image/*" hidden onchange="handleCompressUpload(event)">
       <div class="preview-box" id="compressPreview" style="display:none;"></div>
       <div class="stats" id="compressStats" style="display:none;"></div>
-      <button class="btn-outline" id="compressDownloadBtn" style="display:none;">⬇️ 下载压缩图</button>
+      <div class="btn-group"><button class="btn-outline" id="compressDownloadBtn" style="display:none;">⬇️ 下载压缩图</button></div>
     </div>
   </div>
 
@@ -321,7 +323,7 @@
         <label class="platform-check"><input type="checkbox" value="douyin" checked> 抖店 (800x800)</label>
         <label class="platform-check"><input type="checkbox" value="xhs"> 小红书 (1080x1440)</label>
       </div>
-      <button class="btn-outline" id="generateBtn" style="display:none;" onclick="generatePlatformImages()">✨ 生成各平台图片</button>
+      <div class="btn-group"><button class="btn-outline" id="generateBtn" style="display:none;" onclick="generatePlatformImages()">✨ 生成各平台图片</button></div>
       <div class="download-grid" id="downloadGrid"></div>
     </div>
   </div>
@@ -346,7 +348,7 @@
       </div>
       <div class="preview-box" id="convertPreview" style="display:none;"></div>
       <div class="stats" id="convertStats" style="display:none;"></div>
-      <button class="btn-outline" id="convertDownloadBtn" style="display:none;">⬇️ 下载转换图</button>
+      <div class="btn-group"><button class="btn-outline" id="convertDownloadBtn" style="display:none;">⬇️ 下载转换图</button></div>
     </div>
   </div>
 
@@ -373,7 +375,7 @@
         <span class="small-text">文字颜色</span>
       </div>
       <div class="preview-box" id="coverPreview" style="display:none;"></div>
-      <button class="btn-outline" id="coverDownloadBtn" style="display:none;">⬇️ 下载封面图</button>
+      <div class="btn-group"><button class="btn-outline" id="coverDownloadBtn" style="display:none;">⬇️ 下载封面图</button></div>
     </div>
   </div>
 
@@ -392,7 +394,7 @@
         <label class="platform-check"><input type="checkbox" value="shopee" checked> Shopee (800x800)</label>
         <label class="platform-check"><input type="checkbox" value="lazada"> Lazada (800x800)</label>
       </div>
-      <button class="btn-outline" id="crossGenerateBtn" style="display:none;" onclick="generateCrossImages()">✨ 生成各平台图片</button>
+      <div class="btn-group"><button class="btn-outline" id="crossGenerateBtn" style="display:none;" onclick="generateCrossImages()">✨ 生成各平台图片</button></div>
       <div class="download-grid" id="crossDownloadGrid"></div>
     </div>
   </div>
@@ -414,7 +416,7 @@
         <button class="btn-outline" onclick="generateCopywriting()">✨ 生成文案</button>
       </div>
       <div class="copywriting-result" id="copywritingResult" style="display:none;"></div>
-      <button class="btn-outline" id="copywritingCopyBtn" style="display:none;" onclick="copyCopywriting()">📋 一键复制</button>
+      <div class="btn-group"><button class="btn-outline" id="copywritingCopyBtn" style="display:none;" onclick="copyCopywriting()">📋 一键复制</button></div>
     </div>
   </div>
 
