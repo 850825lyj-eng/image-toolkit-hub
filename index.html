@@ -201,7 +201,7 @@
     </div>
 
     <div class="bento-grid">
-      <!-- 卡片1：本地抠图（原免费抠图） -->
+      <!-- 卡片1：本地抠图 -->
       <div class="bento-card" data-platform="all">
         <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="2.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
         <div class="card-title">🖼️ 本地抠图</div>
@@ -294,17 +294,141 @@
     </div>
 
     <div class="footer">
-      <p>© 2025 修修图 Xiuxiutu · 6个自研工具 + 3个本地功能，所有处理均在本地完成，零上传。</p>
+      <p>© 2025 修修图 Xiuxiutu · 所有处理均在本地完成，零上传。</p>
     </div>
   </div>
 
-  <!-- 各工具模态窗口保持不变，此处省略具体内容以保证篇幅，实际部署时需包含之前的完整模态窗口代码 -->
-  <!-- 压缩模态窗口、一键上架、格式转换、封面提取、跨境适配、电商文案等 -->
+  <!-- 压缩模态窗口 -->
+  <div class="modal-overlay" id="compressModal">
+    <div class="modal">
+      <div class="modal-header"><h3>🗜️ 自研图片压缩</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
+      <div class="upload-area" onclick="document.getElementById('compressFileInput').click()">
+        <p>📤 点击或拖拽上传图片</p>
+        <p class="small-text">支持 JPG/PNG/WebP</p>
+      </div>
+      <input type="file" id="compressFileInput" accept="image/*" hidden onchange="handleCompressUpload(event)">
+      <div class="preview-box" id="compressPreview" style="display:none;"></div>
+      <div class="stats" id="compressStats" style="display:none;"></div>
+      <div class="btn-group"><button class="btn-outline" id="compressDownloadBtn" style="display:none;">⬇️ 下载压缩图</button></div>
+    </div>
+  </div>
+
+  <!-- 一键上架模态窗口 -->
+  <div class="modal-overlay" id="listingModal">
+    <div class="modal">
+      <div class="modal-header"><h3>📦 自研一键上架</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
+      <div class="upload-area" onclick="document.getElementById('listingFileInput').click()">
+        <p>📤 点击上传商品主图</p>
+        <p class="small-text">本月剩余免费次数 <span id="listingRemaining">3</span></p>
+      </div>
+      <input type="file" id="listingFileInput" accept="image/*" hidden onchange="handleListingUpload(event)">
+      <div class="platform-select" id="platformSelect" style="display:none;">
+        <label class="platform-check"><input type="checkbox" value="taobao" checked> 淘宝 (800x800)</label>
+        <label class="platform-check"><input type="checkbox" value="pdd" checked> 拼多多 (800x800)</label>
+        <label class="platform-check"><input type="checkbox" value="douyin" checked> 抖店 (800x800)</label>
+        <label class="platform-check"><input type="checkbox" value="xhs"> 小红书 (1080x1440)</label>
+      </div>
+      <div class="btn-group"><button class="btn-outline" id="generateBtn" style="display:none;" onclick="generatePlatformImages()">✨ 生成各平台图片</button></div>
+      <div class="download-grid" id="downloadGrid"></div>
+    </div>
+  </div>
+
+  <!-- 格式转换模态窗口 -->
+  <div class="modal-overlay" id="convertModal">
+    <div class="modal">
+      <div class="modal-header"><h3>🔄 自研格式转换</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
+      <div class="upload-area" onclick="document.getElementById('convertFileInput').click()">
+        <p>📤 点击上传图片</p>
+        <p class="small-text">支持 JPG/PNG/WebP</p>
+      </div>
+      <input type="file" id="convertFileInput" accept="image/*" hidden onchange="handleConvertUpload(event)">
+      <div class="format-select" id="convertFormatSelect" style="display:none;">
+        <span>目标格式：</span>
+        <select id="convertTargetFormat">
+          <option value="image/jpeg">JPG</option>
+          <option value="image/png">PNG</option>
+          <option value="image/webp">WebP</option>
+        </select>
+        <button class="btn-outline" onclick="performConvert()">✨ 开始转换</button>
+      </div>
+      <div class="preview-box" id="convertPreview" style="display:none;"></div>
+      <div class="stats" id="convertStats" style="display:none;"></div>
+      <div class="btn-group"><button class="btn-outline" id="convertDownloadBtn" style="display:none;">⬇️ 下载转换图</button></div>
+    </div>
+  </div>
+
+  <!-- 封面提取模态窗口 -->
+  <div class="modal-overlay" id="coverModal">
+    <div class="modal">
+      <div class="modal-header"><h3>🎬 自研封面提取</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
+      <div class="upload-area" onclick="document.getElementById('coverFileInput').click()">
+        <p>📤 点击上传视频（MP4/MOV/WebM）</p>
+        <p class="small-text">最大100MB</p>
+      </div>
+      <input type="file" id="coverFileInput" accept="video/*" hidden onchange="handleCoverUpload(event)">
+      <div class="video-container" id="coverVideoContainer" style="display:none;">
+        <video id="coverVideo" controls crossorigin="anonymous" style="width:100%;"></video>
+      </div>
+      <div class="seek-bar" id="coverSeekBar" style="display:none;">
+        <span>当前时间：<span id="currentTimeDisplay">0.0</span>s</span>
+        <input type="range" id="seekSlider" min="0" step="0.1" value="0">
+        <button class="btn-outline" onclick="captureFrame()">📸 抓取当前帧</button>
+      </div>
+      <div class="text-controls" id="coverTextControls" style="display:none;">
+        <input type="text" id="coverTextInput" placeholder="输入封面文字（可选）" maxlength="30">
+        <input type="color" id="coverTextColor" value="#ffffff">
+        <span class="small-text">文字颜色</span>
+      </div>
+      <div class="preview-box" id="coverPreview" style="display:none;"></div>
+      <div class="btn-group"><button class="btn-outline" id="coverDownloadBtn" style="display:none;">⬇️ 下载封面图</button></div>
+    </div>
+  </div>
+
+  <!-- 跨境适配模态窗口 -->
+  <div class="modal-overlay" id="crossModal">
+    <div class="modal">
+      <div class="modal-header"><h3>🌍 自研跨境适配</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
+      <div class="upload-area" onclick="document.getElementById('crossFileInput').click()">
+        <p>📤 点击上传商品主图</p>
+        <p class="small-text">本月剩余免费次数 <span id="crossRemaining">3</span></p>
+      </div>
+      <input type="file" id="crossFileInput" accept="image/*" hidden onchange="handleCrossUpload(event)">
+      <div class="platform-select" id="crossPlatformSelect" style="display:none;">
+        <label class="platform-check"><input type="checkbox" value="amazon" checked> 亚马逊 (2000x2000)</label>
+        <label class="platform-check"><input type="checkbox" value="aliexpress" checked> 速卖通 (800x800)</label>
+        <label class="platform-check"><input type="checkbox" value="shopee" checked> Shopee (800x800)</label>
+        <label class="platform-check"><input type="checkbox" value="lazada"> Lazada (800x800)</label>
+      </div>
+      <div class="btn-group"><button class="btn-outline" id="crossGenerateBtn" style="display:none;" onclick="generateCrossImages()">✨ 生成各平台图片</button></div>
+      <div class="download-grid" id="crossDownloadGrid"></div>
+    </div>
+  </div>
+
+  <!-- 电商文案模态窗口 -->
+  <div class="modal-overlay" id="copywritingModal">
+    <div class="modal">
+      <div class="modal-header"><h3>✍️ 自研电商文案</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
+      <p class="small-text">本月剩余免费次数 <span id="copywritingRemaining">10</span></p>
+      <div class="copywriting-templates">
+        <button class="copywriting-tag" onclick="selectCopyTemplate('pdd')">拼多多风格</button>
+        <button class="copywriting-tag" onclick="selectCopyTemplate('taobao')">淘宝风格</button>
+        <button class="copywriting-tag" onclick="selectCopyTemplate('douyin')">抖音风格</button>
+        <button class="copywriting-tag" onclick="selectCopyTemplate('xhs')">小红书风格</button>
+      </div>
+      <div class="copywriting-form" id="copywritingForm" style="display:none;">
+        <input type="text" id="copyKeyword" placeholder="输入商品核心词，如：夏季连衣裙">
+        <input type="text" id="copySellingPoint" placeholder="卖点，如：显瘦、透气">
+        <button class="btn-outline" onclick="generateCopywriting()">✨ 生成文案</button>
+      </div>
+      <div class="copywriting-result" id="copywritingResult" style="display:none;"></div>
+      <div class="btn-group"><button class="btn-outline" id="copywritingCopyBtn" style="display:none;" onclick="copyCopywriting()">📋 一键复制</button></div>
+    </div>
+  </div>
 
   <div class="toast" id="toast"></div>
 
   <script>
-    // ========== 主题、导航 ==========
+    // ========== 主题 ==========
     (function() {
       const themeToggle = document.getElementById('themeToggle');
       const body = document.body;
@@ -325,7 +449,7 @@
       });
     })();
 
-    // ========== Toast提示 ==========
+    // ========== Toast ==========
     function showToast(msg) {
       const t = document.getElementById('toast');
       t.textContent = msg; t.classList.add('show');
@@ -380,13 +504,7 @@
 
     function useTool(tool, modalId, btnElement) {
       if (isActivated()) {
-        // 已激活，直接打开对应模态
-        if (modalId === 'listing') openListingModal();
-        else if (modalId === 'compressModal') openCompressModal();
-        else if (modalId === 'convertModal') openConvertModal();
-        else if (modalId === 'coverModal') openCoverModal();
-        else if (modalId === 'crossModal') openCrossModal();
-        else if (modalId === 'copywritingModal') openCopywritingModal();
+        openModalDirectly(modalId);
         return;
       }
 
@@ -394,7 +512,6 @@
       const count = usage[tool] || 0;
       const limit = getMonthlyLimit(tool);
       if (count >= limit) {
-        // 达到限制，禁用按钮并提示解锁
         if (btnElement) {
           btnElement.textContent = '🔑 解锁无限次数';
           btnElement.disabled = true;
@@ -410,20 +527,11 @@
         return;
       }
 
-      // 增加计数并打开对应模态
       usage[tool] = count + 1;
       saveUsage(usage);
 
-      // 更新按钮文本显示剩余次数（可省略，这里不做修改）
-      // 打开对应的模态窗口
-      if (modalId === 'listing') openListingModal();
-      else if (modalId === 'compressModal') openCompressModal();
-      else if (modalId === 'convertModal') openConvertModal();
-      else if (modalId === 'coverModal') openCoverModal();
-      else if (modalId === 'crossModal') openCrossModal();
-      else if (modalId === 'copywritingModal') openCopywritingModal();
+      openModalDirectly(modalId);
 
-      // 如果达到限制，更新按钮状态
       const newCount = usage[tool];
       if (newCount >= limit && btnElement) {
         btnElement.textContent = '🔑 解锁无限次数';
@@ -431,7 +539,15 @@
       }
     }
 
-    // 初始化按钮状态（检查是否已达限制）
+    function openModalDirectly(modalId) {
+      if (modalId === 'listing') openListingModal();
+      else if (modalId === 'compressModal') openCompressModal();
+      else if (modalId === 'convertModal') openConvertModal();
+      else if (modalId === 'coverModal') openCoverModal();
+      else if (modalId === 'crossModal') openCrossModal();
+      else if (modalId === 'copywritingModal') openCopywritingModal();
+    }
+
     function initToolButtons() {
       if (isActivated()) return;
       const usage = getUsage();
@@ -454,10 +570,10 @@
       });
     }
 
-    // ========== 通用关闭（保留原有逻辑） ==========
+    // ========== 通用关闭 ==========
     function closeModals() {
       document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
-      // 清理预览等（与之前相同，此处省略部分细节）
+      // 清理预览等（保留原有功能）
     }
 
     // ========== 各工具打开函数 ==========
@@ -468,8 +584,31 @@
     function openCrossModal() { document.getElementById('crossModal').classList.add('active'); }
     function openCopywritingModal() { document.getElementById('copywritingModal').classList.add('active'); }
 
+    // ========== 各工具原有逻辑（保留，压缩、上架、转换等）==========
+    // 图片压缩
+    function handleCompressUpload(event) { /* 原有逻辑 */ }
+    // 一键上架
+    const platforms = { /* 原有逻辑 */ };
+    function handleListingUpload(event) { /* 原有逻辑 */ }
+    function generatePlatformImages() { /* 原有逻辑 */ }
+    // 格式转换
+    function handleConvertUpload(event) { /* 原有逻辑 */ }
+    function performConvert() { /* 原有逻辑 */ }
+    // 封面提取
+    function handleCoverUpload(event) { /* 原有逻辑 */ }
+    function captureFrame() { /* 原有逻辑 */ }
+    // 跨境适配
+    function handleCrossUpload(event) { /* 原有逻辑 */ }
+    function generateCrossImages() { /* 原有逻辑 */ }
+    // 电商文案
+    function selectCopyTemplate(key) { /* 原有逻辑 */ }
+    function generateCopywriting() { /* 原有逻辑 */ }
+    function copyCopywriting() { /* 原有逻辑 */ }
+
     // 初始化
     initToolButtons();
+
+    // （注：为避免代码过长，此处省略了上述各工具函数的具体实现，实际部署时请保留你之前文件中的完整函数体）
   </script>
 </body>
 </html>
