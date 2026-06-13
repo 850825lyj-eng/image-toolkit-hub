@@ -105,12 +105,8 @@
       color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
     }
     .btn-outline:hover { background: var(--accent); color: white; }
-    /* 锁定状态：视觉变灰，但仍可点击 */
     .btn-outline.is-locked {
-      opacity: 0.6;
-      cursor: pointer;
-      border-color: var(--text-muted);
-      color: var(--text-muted);
+      opacity: 0.6; cursor: pointer; border-color: var(--text-muted); color: var(--text-muted);
     }
     .btn-outline.is-locked:hover { background: var(--text-muted); color: white; }
     .btn-ghost {
@@ -305,18 +301,18 @@
     </div>
   </div>
 
-  <!-- 工具模态窗口（省略具体内容以保持简洁，实际使用需保留完整的模态窗口代码） -->
-  <div class="modal-overlay" id="compressModal"><div class="modal">压缩窗口（此处应有完整UI）</div></div>
-  <div class="modal-overlay" id="listingModal"><div class="modal">上架窗口</div></div>
-  <div class="modal-overlay" id="convertModal"><div class="modal">格式转换窗口</div></div>
-  <div class="modal-overlay" id="coverModal"><div class="modal">封面提取窗口</div></div>
-  <div class="modal-overlay" id="crossModal"><div class="modal">跨境适配窗口</div></div>
-  <div class="modal-overlay" id="copywritingModal"><div class="modal">文案窗口</div></div>
+  <!-- 工具模态窗口占位（实际业务中需替换为完整UI） -->
+  <div class="modal-overlay" id="compressModal"><div class="modal"><div class="modal-header"><h3>🗜️ 自研图片压缩</h3><button class="modal-close" onclick="closeModals()">✕</button></div><p>压缩工具具体UI（略）</p></div></div>
+  <div class="modal-overlay" id="listingModal"><div class="modal"><div class="modal-header"><h3>📦 自研一键上架</h3><button class="modal-close" onclick="closeModals()">✕</button></div><p>一键上架UI（略）</p></div></div>
+  <div class="modal-overlay" id="convertModal"><div class="modal"><div class="modal-header"><h3>🔄 自研格式转换</h3><button class="modal-close" onclick="closeModals()">✕</button></div><p>格式转换UI（略）</p></div></div>
+  <div class="modal-overlay" id="coverModal"><div class="modal"><div class="modal-header"><h3>🎬 自研封面提取</h3><button class="modal-close" onclick="closeModals()">✕</button></div><p>封面提取UI（略）</p></div></div>
+  <div class="modal-overlay" id="crossModal"><div class="modal"><div class="modal-header"><h3>🌍 自研跨境适配</h3><button class="modal-close" onclick="closeModals()">✕</button></div><p>跨境适配UI（略）</p></div></div>
+  <div class="modal-overlay" id="copywritingModal"><div class="modal"><div class="modal-header"><h3>✍️ 自研电商文案</h3><button class="modal-close" onclick="closeModals()">✕</button></div><p>文案生成UI（略）</p></div></div>
 
   <div class="toast" id="toast"></div>
 
   <script>
-    // 主题切换
+    // ========== 主题 ==========
     (function() {
       const themeToggle = document.getElementById('themeToggle');
       const body = document.body;
@@ -420,9 +416,15 @@
       });
     }
 
-    // 核心：使用工具
+    // 全局关闭所有模态
+    function closeAllModals() {
+      document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+    }
+
+    // 核心：使用工具，带次数控制与激活引导
     function useTool(tool, modalId, btnElement) {
       if (isActivated()) {
+        closeAllModals();
         openModalDirectly(modalId);
         return;
       }
@@ -432,24 +434,26 @@
       const limit = getMonthlyLimit(tool);
 
       if (count >= limit) {
-        // 次数已满，弹窗引导激活
+        // 已达上限，弹窗引导激活
         const code = prompt('⚠️ 您的本月免费体验次数已满。请输入修修图尊享版激活码解锁全家桶无限次本地高质处理：');
         if (code === 'XIU2025-FREE') {
           localStorage.setItem(ACTIVATION_KEY, 'true');
-          updateAllButtons();
-          showToast('激活成功！所有工具已解锁，欢迎使用。');
-          openModalDirectly(modalId);
+          updateAllButtons();           // 实时刷新所有按钮状态
+          closeAllModals();            // 关闭可能遗留的任何僵尸弹窗
+          showToast('🎉 尊享版全家桶已成功激活！无限次本地高质处理已全面解锁。');
+          openModalDirectly(modalId);  // 直接打开对应工具
         } else if (code !== null) {
           showToast('激活码无效，请确认后重试。');
         }
         return;
       }
 
-      // 正常使用：扣减次数
+      // 正常使用
       usage[tool] = count + 1;
       saveUsage(usage);
+      closeAllModals();
       openModalDirectly(modalId);
-      // 检查是否刚刚用完
+      // 如果恰好用完，更新按钮状态
       if (usage[tool] >= limit) {
         btnElement.textContent = '🔑 解锁无限次数';
         btnElement.classList.add('is-locked');
@@ -457,26 +461,24 @@
     }
 
     function openModalDirectly(modalId) {
-      if (modalId === 'listing') openListingModal();
-      else if (modalId === 'compressModal') openCompressModal();
-      else if (modalId === 'convertModal') openConvertModal();
-      else if (modalId === 'coverModal') openCoverModal();
-      else if (modalId === 'crossModal') openCrossModal();
-      else if (modalId === 'copywritingModal') openCopywritingModal();
+      const el = document.getElementById(modalId);
+      if (el) el.classList.add('active');
     }
 
-    function openCompressModal() { document.getElementById('compressModal').classList.add('active'); }
-    function openListingModal() { document.getElementById('listingModal').classList.add('active'); }
-    function openConvertModal() { document.getElementById('convertModal').classList.add('active'); }
-    function openCoverModal() { document.getElementById('coverModal').classList.add('active'); }
-    function openCrossModal() { document.getElementById('crossModal').classList.add('active'); }
-    function openCopywritingModal() { document.getElementById('copywritingModal').classList.add('active'); }
+    function closeModals() { closeAllModals(); }
 
-    // 初始化
+    // 以下为工具打开函数，实际完整产品中应绑定到按钮
+    function openCompressModal() { closeAllModals(); document.getElementById('compressModal').classList.add('active'); }
+    function openListingModal() { closeAllModals(); document.getElementById('listingModal').classList.add('active'); }
+    function openConvertModal() { closeAllModals(); document.getElementById('convertModal').classList.add('active'); }
+    function openCoverModal() { closeAllModals(); document.getElementById('coverModal').classList.add('active'); }
+    function openCrossModal() { closeAllModals(); document.getElementById('crossModal').classList.add('active'); }
+    function openCopywritingModal() { closeAllModals(); document.getElementById('copywritingModal').classList.add('active'); }
+
+    // 初始化按钮状态
     updateAllButtons();
 
-    // 注意：实际的模态窗口和工具处理函数（压缩、上架等）由于篇幅限制未完全展示。
-    // 请确保你的完整文件中包含之前已有的工具逻辑，本代码主要演示修复后的交互通路。
+    // 注：实际产品中每个模态窗口内部还需包含上传、处理、下载等逻辑，此处为保证全局架构完整性，仅作占位演示。
   </script>
 </body>
 </html>
