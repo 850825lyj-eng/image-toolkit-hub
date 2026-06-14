@@ -181,304 +181,650 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <nav class="navbar">
-      <div class="brand">
-        <div class="brand-icon">🛠️</div>
-        <span>修修图<span style="color:var(--accent);">·美工百宝箱</span></span>
-      </div>
-      <div class="nav-tabs" id="navTabs">
-        <button class="nav-tab active" data-platform="all">🔥 全部</button>
-        <button class="nav-tab" data-platform="pdd"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#E53E3E"/><text x="12" y="17" text-anchor="middle" font-size="14" font-weight="bold" fill="white">拼</text></svg></span>拼多多</button>
-        <button class="nav-tab" data-platform="taobao"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#FF6C00"/><text x="12" y="17" text-anchor="middle" font-size="12" font-weight="bold" fill="white">淘</text></svg></span>淘宝</button>
-        <button class="nav-tab" data-platform="douyin"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M17.5 3.5C17.5 5.5 15.5 7.5 13.5 7.5C12.5 7.5 11.5 7 11 6.5V14.5C11 17 9 19 6.5 19C4 19 2 17 2 14.5C2 12 4 10 6.5 10C7.1 10 7.7 10.1 8.3 10.3V13.5C7.8 13.3 7.2 13.1 6.5 13.1C5 13.1 4 14.1 4 15.5C4 16.9 5 17.9 6.5 17.9C8 17.9 9 16.9 9 15.4V3.5H11.5V3.9C11.5 6.1 13.2 7.9 15.4 7.9V10.3C14.4 10.3 13.5 10 12.7 9.5V13.5C12.7 16.5 15.2 19 18.2 19C21.2 19 23.7 16.5 23.7 13.5C23.7 10.5 21.2 8 18.2 8C17.3 8 16.5 8.2 15.8 8.5C16.5 7.5 17.1 6.3 17.3 5H17.5V3.5Z" fill="#111"/></svg></span>抖店</button>
-        <button class="nav-tab" data-platform="xhs"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2" fill="#FE2C55"/><text x="12" y="16" text-anchor="middle" font-size="10" font-weight="bold" fill="white">红</text></svg></span>小红书</button>
-        <button class="nav-tab" data-platform="cross"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>跨境</button>
-      </div>
-      <button class="theme-toggle" id="themeToggle" title="切换深色/浅色模式" aria-label="切换深色模式">🌙 深色模式</button>
-    </nav>
-
-    <div class="hero">
-      <h1>电商AI美工百宝箱</h1>
-      <p>6个自研工具 + 3个本地功能。本地处理零上传，一站式解决电商图片与内容需求。</p>
+<div class="container">
+  <nav class="navbar">
+    <div class="brand">
+      <div class="brand-icon">🛠️</div>
+      <span>修修图<span style="color:var(--accent);">·美工百宝箱</span></span>
     </div>
+    <div class="nav-tabs" id="navTabs">
+      <button class="nav-tab active" data-platform="all">🔥 全部</button>
+      <button class="nav-tab" data-platform="pdd"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#E53E3E"/><text x="12" y="17" text-anchor="middle" font-size="14" font-weight="bold" fill="white">拼</text></svg></span>拼多多</button>
+      <button class="nav-tab" data-platform="taobao"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#FF6C00"/><text x="12" y="17" text-anchor="middle" font-size="12" font-weight="bold" fill="white">淘</text></svg></span>淘宝</button>
+      <button class="nav-tab" data-platform="douyin"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M17.5 3.5C17.5 5.5 15.5 7.5 13.5 7.5C12.5 7.5 11.5 7 11 6.5V14.5C11 17 9 19 6.5 19C4 19 2 17 2 14.5C2 12 4 10 6.5 10C7.1 10 7.7 10.1 8.3 10.3V13.5C7.8 13.3 7.2 13.1 6.5 13.1C5 13.1 4 14.1 4 15.5C4 16.9 5 17.9 6.5 17.9C8 17.9 9 16.9 9 15.4V3.5H11.5V3.9C11.5 6.1 13.2 7.9 15.4 7.9V10.3C14.4 10.3 13.5 10 12.7 9.5V13.5C12.7 16.5 15.2 19 18.2 19C21.2 19 23.7 16.5 23.7 13.5C23.7 10.5 21.2 8 18.2 8C17.3 8 16.5 8.2 15.8 8.5C16.5 7.5 17.1 6.3 17.3 5H17.5V3.5Z" fill="#111"/></svg></span>抖店</button>
+      <button class="nav-tab" data-platform="xhs"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2" fill="#FE2C55"/><text x="12" y="16" text-anchor="middle" font-size="10" font-weight="bold" fill="white">红</text></svg></span>小红书</button>
+      <button class="nav-tab" data-platform="cross"><span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>跨境</button>
+    </div>
+    <button class="theme-toggle" id="themeToggle" title="切换深色/浅色模式" aria-label="切换深色模式">🌙 深色模式</button>
+  </nav>
 
-    <div class="bento-grid">
-      <!-- 卡片1：本地抠图 -->
-      <div class="bento-card" data-platform="all">
-        <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="2.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
-        <div class="card-title">🖼️ 本地抠图</div>
-        <div class="card-desc">自研 Web 本地边缘解析，一键去背景生成纯白底商品图，不上传任何服务器。</div>
-        <div class="card-actions">
-          <button class="btn-outline" onclick="showToast('本地抠图功能即将上线')">即将上线</button>
-          <button class="btn-ghost" onclick="showToast('本地抠图功能即将上线')">了解更多 →</button>
-        </div>
-      </div>
-      <!-- 卡片2：AI模板库 -->
-      <div class="bento-card" data-platform="all">
-        <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-        <div class="card-title">🎨 AI模板库</div>
-        <div class="card-desc">按服装/美妆/食品/3C预制爆款模板，快速出图。</div>
-        <div class="card-actions">
-          <a href="https://www.gaoding.com/templates" target="_blank" class="btn-outline">稿定模板</a>
-          <a href="https://www.canva.cn" target="_blank" class="btn-ghost">Canva →</a>
-        </div>
-      </div>
-      <!-- 卡片3：改尺寸 -->
-      <div class="bento-card" data-platform="taobao,pdd,douyin,xhs">
-        <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div>
-        <div class="card-title">📐 改尺寸</div>
-        <div class="card-desc">淘宝/拼多多/抖音全平台尺寸预设，一键裁剪。自研每月免费3次。</div>
-        <div class="card-actions">
-          <button class="btn-outline" id="btn-listing" onclick="useTool('resize', 'listing', this)">📦 自研上架</button>
-          <button class="btn-ghost" onclick="openConvertModal()">🔄 格式转换</button>
-        </div>
-      </div>
-      <!-- 卡片4：跨境适配 -->
-      <div class="bento-card" data-platform="cross">
-        <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-        <div class="card-title">🌍 跨境适配</div>
-        <div class="card-desc">亚马逊/速卖通/Shopee/Lazada白底图规范。自研每月免费3次。</div>
-        <div class="card-actions">
-          <button class="btn-outline" id="btn-cross" onclick="useTool('cross', 'crossModal', this)">📦 自研适配</button>
-          <button class="btn-ghost" onclick="openListingModal()">📐 国内尺寸</button>
-        </div>
-      </div>
-      <!-- 卡片5：封面生成 -->
-      <div class="bento-card" data-platform="douyin,xhs">
-        <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
-        <div class="card-title">🎬 封面生成</div>
-        <div class="card-desc">视频封面提取+文字叠加，自研每月免费3次。</div>
-        <div class="card-actions">
-          <button class="btn-outline" id="btn-cover" onclick="useTool('cover', 'coverModal', this)">🎥 自研封面</button>
-          <button class="btn-ghost" onclick="openListingModal()">📐 封面尺寸</button>
-        </div>
-      </div>
-      <!-- 卡片6：图片压缩 -->
-      <div class="bento-card" data-platform="all">
-        <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
-        <div class="card-title">🗜️ 图片压缩</div>
-        <div class="card-desc">自研Canvas本地压缩，每月免费5次。</div>
-        <div class="card-actions">
-          <button class="btn-outline" id="btn-compress" onclick="useTool('compress', 'compressModal', this)">🚀 自研压缩</button>
-          <a href="https://tinypng.com" target="_blank" class="btn-ghost">TinyPNG →</a>
-        </div>
-      </div>
-      <!-- 卡片7：格式转换 -->
-      <div class="bento-card" data-platform="all">
-        <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg></div>
-        <div class="card-title">🔄 格式转换</div>
-        <div class="card-desc">JPG/PNG/WebP互转，自研每月免费5次。</div>
-        <div class="card-actions">
-          <button class="btn-outline" id="btn-convert" onclick="useTool('convert', 'convertModal', this)">🚀 自研转换</button>
-          <a href="https://convertio.co/zh/" target="_blank" class="btn-ghost">Convertio →</a>
-        </div>
-      </div>
-      <!-- 卡片8：免费素材 -->
-      <div class="bento-card" data-platform="all">
-        <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-        <div class="card-title">📸 免费素材</div>
-        <div class="card-desc">Pexels、Unsplash 可商用图片素材，免费下载。</div>
-        <div class="card-actions">
-          <a href="https://www.pexels.com/zh-cn/" target="_blank" class="btn-outline">Pexels</a>
-          <a href="https://unsplash.com" target="_blank" class="btn-ghost">Unsplash →</a>
-        </div>
-      </div>
-      <!-- 卡片9：电商文案 -->
-      <div class="bento-card" data-platform="all">
-        <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
-        <div class="card-title">✍️ 电商文案</div>
-        <div class="card-desc">标题公式生成器，自研每月免费10次。</div>
-        <div class="card-actions">
-          <button class="btn-outline" id="btn-copywriting" onclick="useTool('copywriting', 'copywritingModal', this)">✍️ 自研文案</button>
-          <a href="https://chuangyi.taobao.com" target="_blank" class="btn-ghost">阿里妈妈 →</a>
-        </div>
+  <div class="hero">
+    <h1>电商AI美工百宝箱</h1>
+    <p>6个自研工具 + 3个本地功能。本地处理零上传，一站式解决电商图片与内容需求。</p>
+  </div>
+
+  <div class="bento-grid">
+    <!-- 卡片1：本地抠图 -->
+    <div class="bento-card" data-platform="all">
+      <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="2.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+      <div class="card-title">🖼️ 本地抠图</div>
+      <div class="card-desc">自研 Web 本地边缘解析，一键去背景生成纯白底商品图，不上传任何服务器。</div>
+      <div class="card-actions">
+        <button class="btn-outline" onclick="showToast('本地抠图功能即将上线')">即将上线</button>
+        <button class="btn-ghost" onclick="showToast('本地抠图功能即将上线')">了解更多 →</button>
       </div>
     </div>
-
-    <div class="footer">
-      <p>© 2025 修修图 Xiuxiutu · 所有处理均在本地完成，零上传。</p>
+    <!-- 卡片2：AI模板库 -->
+    <div class="bento-card" data-platform="all">
+      <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <div class="card-title">🎨 AI模板库</div>
+      <div class="card-desc">按服装/美妆/食品/3C预制爆款模板，快速出图。</div>
+      <div class="card-actions">
+        <a href="https://www.gaoding.com/templates" target="_blank" class="btn-outline">稿定模板</a>
+        <a href="https://www.canva.cn" target="_blank" class="btn-ghost">Canva →</a>
+      </div>
+    </div>
+    <!-- 卡片3：改尺寸 -->
+    <div class="bento-card" data-platform="taobao,pdd,douyin,xhs">
+      <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div>
+      <div class="card-title">📐 改尺寸</div>
+      <div class="card-desc">淘宝/拼多多/抖音全平台尺寸预设，一键裁剪。自研每月免费3次。</div>
+      <div class="card-actions">
+        <button class="btn-outline" id="btn-listing" onclick="useTool('resize', 'listingModal', this)">📦 自研上架</button>
+        <button class="btn-ghost" onclick="openConvertModal()">🔄 格式转换</button>
+      </div>
+    </div>
+    <!-- 卡片4：跨境适配 -->
+    <div class="bento-card" data-platform="cross">
+      <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+      <div class="card-title">🌍 跨境适配</div>
+      <div class="card-desc">亚马逊/速卖通/Shopee/Lazada白底图规范。自研每月免费3次。</div>
+      <div class="card-actions">
+        <button class="btn-outline" id="btn-cross" onclick="useTool('cross', 'crossModal', this)">📦 自研适配</button>
+        <button class="btn-ghost" onclick="openListingModal()">📐 国内尺寸</button>
+      </div>
+    </div>
+    <!-- 卡片5：封面生成 -->
+    <div class="bento-card" data-platform="douyin,xhs">
+      <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+      <div class="card-title">🎬 封面生成</div>
+      <div class="card-desc">视频封面提取+文字叠加，自研每月免费3次。</div>
+      <div class="card-actions">
+        <button class="btn-outline" id="btn-cover" onclick="useTool('cover', 'coverModal', this)">🎥 自研封面</button>
+        <button class="btn-ghost" onclick="openListingModal()">📐 封面尺寸</button>
+      </div>
+    </div>
+    <!-- 卡片6：图片压缩 -->
+    <div class="bento-card" data-platform="all">
+      <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      <div class="card-title">🗜️ 图片压缩</div>
+      <div class="card-desc">自研Canvas本地压缩，每月免费5次。</div>
+      <div class="card-actions">
+        <button class="btn-outline" id="btn-compress" onclick="useTool('compress', 'compressModal', this)">🚀 自研压缩</button>
+        <a href="https://tinypng.com" target="_blank" class="btn-ghost">TinyPNG →</a>
+      </div>
+    </div>
+    <!-- 卡片7：格式转换 -->
+    <div class="bento-card" data-platform="all">
+      <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg></div>
+      <div class="card-title">🔄 格式转换</div>
+      <div class="card-desc">JPG/PNG/WebP互转，自研每月免费5次。</div>
+      <div class="card-actions">
+        <button class="btn-outline" id="btn-convert" onclick="useTool('convert', 'convertModal', this)">🚀 自研转换</button>
+        <a href="https://convertio.co/zh/" target="_blank" class="btn-ghost">Convertio →</a>
+      </div>
+    </div>
+    <!-- 卡片8：免费素材 -->
+    <div class="bento-card" data-platform="all">
+      <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+      <div class="card-title">📸 免费素材</div>
+      <div class="card-desc">Pexels、Unsplash 可商用图片素材，免费下载。</div>
+      <div class="card-actions">
+        <a href="https://www.pexels.com/zh-cn/" target="_blank" class="btn-outline">Pexels</a>
+        <a href="https://unsplash.com" target="_blank" class="btn-ghost">Unsplash →</a>
+      </div>
+    </div>
+    <!-- 卡片9：电商文案 -->
+    <div class="bento-card" data-platform="all">
+      <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+      <div class="card-title">✍️ 电商文案</div>
+      <div class="card-desc">标题公式生成器，自研每月免费10次。</div>
+      <div class="card-actions">
+        <button class="btn-outline" id="btn-copywriting" onclick="useTool('copywriting', 'copywritingModal', this)">✍️ 自研文案</button>
+        <a href="https://chuangyi.taobao.com" target="_blank" class="btn-ghost">阿里妈妈 →</a>
+      </div>
     </div>
   </div>
 
-  <!-- 工具模态窗口占位（实际业务中需替换为完整UI） -->
-  <div class="modal-overlay" id="compressModal"><div class="modal"><div class="modal-header"><h3>🗜️ 自研图片压缩</h3><button class="modal-close" onclick="closeModals()">✕</button></div><p>压缩工具具体UI（略）</p></div></div>
-  <div class="modal-overlay" id="listingModal"><div class="modal"><div class="modal-header"><h3>📦 自研一键上架</h3><button class="modal-close" onclick="closeModals()">✕</button></div><p>一键上架UI（略）</p></div></div>
-  <div class="modal-overlay" id="convertModal"><div class="modal"><div class="modal-header"><h3>🔄 自研格式转换</h3><button class="modal-close" onclick="closeModals()">✕</button></div><p>格式转换UI（略）</p></div></div>
-  <div class="modal-overlay" id="coverModal"><div class="modal"><div class="modal-header"><h3>🎬 自研封面提取</h3><button class="modal-close" onclick="closeModals()">✕</button></div><p>封面提取UI（略）</p></div></div>
-  <div class="modal-overlay" id="crossModal"><div class="modal"><div class="modal-header"><h3>🌍 自研跨境适配</h3><button class="modal-close" onclick="closeModals()">✕</button></div><p>跨境适配UI（略）</p></div></div>
-  <div class="modal-overlay" id="copywritingModal"><div class="modal"><div class="modal-header"><h3>✍️ 自研电商文案</h3><button class="modal-close" onclick="closeModals()">✕</button></div><p>文案生成UI（略）</p></div></div>
+  <div class="footer">
+    <p>© 2025 修修图 Xiuxiutu · 所有处理均在本地完成，零上传。</p>
+  </div>
+</div>
 
-  <div class="toast" id="toast"></div>
+<!-- 自研工具模态窗口：图片压缩 -->
+<div class="modal-overlay" id="compressModal">
+  <div class="modal">
+    <div class="modal-header"><h3>🗜️ 自研图片压缩</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
+    <div class="upload-area" onclick="document.getElementById('compressFileInput').click()">
+      <p>📤 点击或拖拽上传图片</p>
+      <p class="small-text">支持 JPG/PNG/WebP</p>
+    </div>
+    <input type="file" id="compressFileInput" accept="image/*" hidden onchange="handleCompressUpload(event)">
+    <div class="preview-box" id="compressPreview" style="display:none;"></div>
+    <div class="stats" id="compressStats" style="display:none;"></div>
+    <div class="btn-group"><button class="btn-outline" id="compressDownloadBtn" style="display:none;">⬇️ 下载压缩图</button></div>
+  </div>
+</div>
 
-  <script>
-    // ========== 主题 ==========
-    (function() {
-      const themeToggle = document.getElementById('themeToggle');
-      const body = document.body;
-      const savedTheme = localStorage.getItem('theme');
-      const updateButton = (isDark) => {
-        themeToggle.innerHTML = isDark ? '☀️ 浅色模式' : '🌙 深色模式';
-      };
-      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        body.classList.add('dark'); updateButton(true);
-      } else {
-        updateButton(false);
-      }
-      themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark');
-        const isDark = body.classList.contains('dark');
-        updateButton(isDark);
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      });
-    })();
+<!-- 自研工具模态窗口：一键上架 -->
+<div class="modal-overlay" id="listingModal">
+  <div class="modal">
+    <div class="modal-header"><h3>📦 自研一键上架</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
+    <div class="upload-area" onclick="document.getElementById('listingFileInput').click()">
+      <p>📤 点击上传商品主图</p>
+      <p class="small-text">本月剩余免费次数 <span id="listingRemaining">3</span></p>
+    </div>
+    <input type="file" id="listingFileInput" accept="image/*" hidden onchange="handleListingUpload(event)">
+    <div class="platform-select" id="platformSelect" style="display:none;">
+      <label class="platform-check"><input type="checkbox" value="taobao" checked> 淘宝 (800x800)</label>
+      <label class="platform-check"><input type="checkbox" value="pdd" checked> 拼多多 (800x800)</label>
+      <label class="platform-check"><input type="checkbox" value="douyin" checked> 抖店 (800x800)</label>
+      <label class="platform-check"><input type="checkbox" value="xhs"> 小红书 (1080x1440)</label>
+    </div>
+    <div class="btn-group"><button class="btn-outline" id="generateBtn" style="display:none;" onclick="generatePlatformImages()">✨ 生成各平台图片</button></div>
+    <div class="download-grid" id="downloadGrid"></div>
+  </div>
+</div>
 
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg; t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2000);
-    }
+<!-- 自研工具模态窗口：格式转换 -->
+<div class="modal-overlay" id="convertModal">
+  <div class="modal">
+    <div class="modal-header"><h3>🔄 自研格式转换</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
+    <div class="upload-area" onclick="document.getElementById('convertFileInput').click()">
+      <p>📤 点击上传图片</p>
+      <p class="small-text">支持 JPG/PNG/WebP</p>
+    </div>
+    <input type="file" id="convertFileInput" accept="image/*" hidden onchange="handleConvertUpload(event)">
+    <div class="format-select" id="convertFormatSelect" style="display:none;">
+      <span>目标格式：</span>
+      <select id="convertTargetFormat">
+        <option value="image/jpeg">JPG</option>
+        <option value="image/png">PNG</option>
+        <option value="image/webp">WebP</option>
+      </select>
+      <button class="btn-outline" onclick="performConvert()">✨ 开始转换</button>
+    </div>
+    <div class="preview-box" id="convertPreview" style="display:none;"></div>
+    <div class="stats" id="convertStats" style="display:none;"></div>
+    <div class="btn-group"><button class="btn-outline" id="convertDownloadBtn" style="display:none;">⬇️ 下载转换图</button></div>
+  </div>
+</div>
 
-    // 平台过滤
-    const navTabs = document.getElementById('navTabs');
-    navTabs.addEventListener('click', (e) => {
-      const tab = e.target.closest('.nav-tab');
-      if (!tab) return;
-      navTabs.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      const platform = tab.dataset.platform;
-      document.querySelectorAll('.bento-card').forEach(card => {
-        const cardPlatforms = card.dataset.platform ? card.dataset.platform.split(',') : ['all'];
-        if (platform === 'all' || cardPlatforms.includes(platform)) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
-      });
+<!-- 自研工具模态窗口：封面提取 -->
+<div class="modal-overlay" id="coverModal">
+  <div class="modal">
+    <div class="modal-header"><h3>🎬 自研封面提取</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
+    <div class="upload-area" onclick="document.getElementById('coverFileInput').click()">
+      <p>📤 点击上传视频（MP4/MOV/WebM）</p>
+      <p class="small-text">最大100MB</p>
+    </div>
+    <input type="file" id="coverFileInput" accept="video/*" hidden onchange="handleCoverUpload(event)">
+    <div class="video-container" id="coverVideoContainer" style="display:none;">
+      <video id="coverVideo" controls crossorigin="anonymous" style="width:100%;"></video>
+    </div>
+    <div class="seek-bar" id="coverSeekBar" style="display:none;">
+      <span>当前时间：<span id="currentTimeDisplay">0.0</span>s</span>
+      <input type="range" id="seekSlider" min="0" step="0.1" value="0">
+      <button class="btn-outline" onclick="captureFrame()">📸 抓取当前帧</button>
+    </div>
+    <div class="text-controls" id="coverTextControls" style="display:none;">
+      <input type="text" id="coverTextInput" placeholder="输入封面文字（可选）" maxlength="30">
+      <input type="color" id="coverTextColor" value="#ffffff">
+      <span class="small-text">文字颜色</span>
+    </div>
+    <div class="preview-box" id="coverPreview" style="display:none;"></div>
+    <div class="btn-group"><button class="btn-outline" id="coverDownloadBtn" style="display:none;">⬇️ 下载封面图</button></div>
+  </div>
+</div>
+
+<!-- 自研工具模态窗口：跨境适配 -->
+<div class="modal-overlay" id="crossModal">
+  <div class="modal">
+    <div class="modal-header"><h3>🌍 自研跨境适配</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
+    <div class="upload-area" onclick="document.getElementById('crossFileInput').click()">
+      <p>📤 点击上传商品主图</p>
+      <p class="small-text">本月剩余免费次数 <span id="crossRemaining">3</span></p>
+    </div>
+    <input type="file" id="crossFileInput" accept="image/*" hidden onchange="handleCrossUpload(event)">
+    <div class="platform-select" id="crossPlatformSelect" style="display:none;">
+      <label class="platform-check"><input type="checkbox" value="amazon" checked> 亚马逊 (2000x2000)</label>
+      <label class="platform-check"><input type="checkbox" value="aliexpress" checked> 速卖通 (800x800)</label>
+      <label class="platform-check"><input type="checkbox" value="shopee" checked> Shopee (800x800)</label>
+      <label class="platform-check"><input type="checkbox" value="lazada"> Lazada (800x800)</label>
+    </div>
+    <div class="btn-group"><button class="btn-outline" id="crossGenerateBtn" style="display:none;" onclick="generateCrossImages()">✨ 生成各平台图片</button></div>
+    <div class="download-grid" id="crossDownloadGrid"></div>
+  </div>
+</div>
+
+<!-- 自研工具模态窗口：电商文案 -->
+<div class="modal-overlay" id="copywritingModal">
+  <div class="modal">
+    <div class="modal-header"><h3>✍️ 自研电商文案</h3><button class="modal-close" onclick="closeModals()">✕</button></div>
+    <p class="small-text">本月剩余免费次数 <span id="copywritingRemaining">10</span></p>
+    <div class="copywriting-templates">
+      <button class="copywriting-tag" onclick="selectCopyTemplate('pdd')">拼多多风格</button>
+      <button class="copywriting-tag" onclick="selectCopyTemplate('taobao')">淘宝风格</button>
+      <button class="copywriting-tag" onclick="selectCopyTemplate('douyin')">抖音风格</button>
+      <button class="copywriting-tag" onclick="selectCopyTemplate('xhs')">小红书风格</button>
+    </div>
+    <div class="copywriting-form" id="copywritingForm" style="display:none;">
+      <input type="text" id="copyKeyword" placeholder="输入商品核心词，如：夏季连衣裙">
+      <input type="text" id="copySellingPoint" placeholder="卖点，如：显瘦、透气">
+      <button class="btn-outline" onclick="generateCopywriting()">✨ 生成文案</button>
+    </div>
+    <div class="copywriting-result" id="copywritingResult" style="display:none;"></div>
+    <div class="btn-group"><button class="btn-outline" id="copywritingCopyBtn" style="display:none;" onclick="copyCopywriting()">📋 一键复制</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ========== 主题切换 ==========
+  (function() {
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const savedTheme = localStorage.getItem('theme');
+    const updateButton = (isDark) => {
+      themeToggle.innerHTML = isDark ? '☀️ 浅色模式' : '🌙 深色模式';
+    };
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      body.classList.add('dark'); updateButton(true);
+    } else { updateButton(false); }
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const isDark = body.classList.contains('dark');
+      updateButton(isDark);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
+  })();
 
-    // 次数管理
-    const ACTIVATION_KEY = 'xiuxiutu_activated';
-    const USAGE_KEY_PREFIX = 'tools_usage_';
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+  }
 
-    function getUsageKey() {
-      const now = new Date();
-      return USAGE_KEY_PREFIX + now.getFullYear() + '_' + (now.getMonth() + 1);
+  // ========== 平台过滤 ==========
+  const navTabs = document.getElementById('navTabs');
+  navTabs.addEventListener('click', (e) => {
+    const tab = e.target.closest('.nav-tab');
+    if (!tab) return;
+    navTabs.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const platform = tab.dataset.platform;
+    document.querySelectorAll('.bento-card').forEach(card => {
+      const cardPlatforms = card.dataset.platform ? card.dataset.platform.split(',') : ['all'];
+      if (platform === 'all' || cardPlatforms.includes(platform)) {
+        card.classList.remove('hidden');
+      } else { card.classList.add('hidden'); }
+    });
+  });
+
+  // ========== 次数管理与激活 ==========
+  const ACTIVATION_KEY = 'xiuxiutu_activated';
+  const USAGE_KEY_PREFIX = 'tools_usage_';
+
+  function getUsageKey() {
+    const now = new Date();
+    return USAGE_KEY_PREFIX + now.getFullYear() + '_' + (now.getMonth() + 1);
+  }
+
+  function getUsage() {
+    const key = getUsageKey();
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : {};
+  }
+
+  function saveUsage(usage) { localStorage.setItem(getUsageKey(), JSON.stringify(usage)); }
+
+  function isActivated() { return localStorage.getItem(ACTIVATION_KEY) === 'true'; }
+
+  function getMonthlyLimit(tool) {
+    const limits = { resize: 3, cross: 3, cover: 3, compress: 5, convert: 5, copywriting: 10 };
+    return limits[tool] || 999;
+  }
+
+  function updateButtonState(btn, tool) {
+    if (!btn) return;
+    const limit = getMonthlyLimit(tool);
+    const usage = getUsage();
+    const count = usage[tool] || 0;
+    const locked = count >= limit && !isActivated();
+    if (locked) {
+      btn.textContent = '🔑 解锁无限次数';
+      btn.classList.add('is-locked');
+    } else {
+      btn.textContent = btn.dataset.originalText || btn.textContent;
+      btn.classList.remove('is-locked');
     }
+  }
 
-    function getUsage() {
-      const key = getUsageKey();
-      const raw = localStorage.getItem(key);
-      return raw ? JSON.parse(raw) : {};
-    }
-
-    function saveUsage(usage) {
-      localStorage.setItem(getUsageKey(), JSON.stringify(usage));
-    }
-
-    function isActivated() {
-      return localStorage.getItem(ACTIVATION_KEY) === 'true';
-    }
-
-    function getMonthlyLimit(tool) {
-      const limits = { resize: 3, cross: 3, cover: 3, compress: 5, convert: 5, copywriting: 10 };
-      return limits[tool] || 999;
-    }
-
-    function updateButtonState(btn, tool) {
+  function updateAllButtons() {
+    const buttons = {
+      resize: document.getElementById('btn-listing'),
+      cross: document.getElementById('btn-cross'),
+      cover: document.getElementById('btn-cover'),
+      compress: document.getElementById('btn-compress'),
+      convert: document.getElementById('btn-convert'),
+      copywriting: document.getElementById('btn-copywriting')
+    };
+    Object.entries(buttons).forEach(([tool, btn]) => {
       if (!btn) return;
-      const limit = getMonthlyLimit(tool);
-      const usage = getUsage();
-      const count = usage[tool] || 0;
-      const locked = count >= limit && !isActivated();
-      if (locked) {
-        btn.textContent = '🔑 解锁无限次数';
-        btn.classList.add('is-locked');
-      } else {
-        btn.textContent = btn.dataset.originalText || btn.textContent;
-        btn.classList.remove('is-locked');
-      }
-    }
+      if (!btn.dataset.originalText) btn.dataset.originalText = btn.textContent;
+      updateButtonState(btn, tool);
+    });
+  }
 
-    function updateAllButtons() {
-      const buttons = {
-        resize: document.getElementById('btn-listing'),
-        cross: document.getElementById('btn-cross'),
-        cover: document.getElementById('btn-cover'),
-        compress: document.getElementById('btn-compress'),
-        convert: document.getElementById('btn-convert'),
-        copywriting: document.getElementById('btn-copywriting')
-      };
-      Object.entries(buttons).forEach(([tool, btn]) => {
-        if (!btn) return;
-        if (!btn.dataset.originalText) btn.dataset.originalText = btn.textContent;
-        updateButtonState(btn, tool);
-      });
-    }
+  function closeAllModals() {
+    document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+  }
 
-    // 全局关闭所有模态
-    function closeAllModals() {
-      document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
-    }
+  function openModalDirectly(modalId) {
+    closeAllModals();
+    const el = document.getElementById(modalId);
+    if (el) el.classList.add('active');
+  }
 
-    // 核心：使用工具，带次数控制与激活引导
-    function useTool(tool, modalId, btnElement) {
-      if (isActivated()) {
-        closeAllModals();
-        openModalDirectly(modalId);
-        return;
-      }
-
-      const usage = getUsage();
-      const count = usage[tool] || 0;
-      const limit = getMonthlyLimit(tool);
-
-      if (count >= limit) {
-        // 已达上限，弹窗引导激活
-        const code = prompt('⚠️ 您的本月免费体验次数已满。请输入修修图尊享版激活码解锁全家桶无限次本地高质处理：');
-        if (code === 'XIU2025-FREE') {
-          localStorage.setItem(ACTIVATION_KEY, 'true');
-          updateAllButtons();           // 实时刷新所有按钮状态
-          closeAllModals();            // 关闭可能遗留的任何僵尸弹窗
-          showToast('🎉 尊享版全家桶已成功激活！无限次本地高质处理已全面解锁。');
-          openModalDirectly(modalId);  // 直接打开对应工具
-        } else if (code !== null) {
-          showToast('激活码无效，请确认后重试。');
-        }
-        return;
-      }
-
-      // 正常使用
-      usage[tool] = count + 1;
-      saveUsage(usage);
-      closeAllModals();
+  // ========== 使用工具：次数控制 + 激活码 ==========
+  function useTool(tool, modalId, btnElement) {
+    if (isActivated()) {
       openModalDirectly(modalId);
-      // 如果恰好用完，更新按钮状态
-      if (usage[tool] >= limit) {
-        btnElement.textContent = '🔑 解锁无限次数';
-        btnElement.classList.add('is-locked');
+      return;
+    }
+    const usage = getUsage();
+    const count = usage[tool] || 0;
+    const limit = getMonthlyLimit(tool);
+    if (count >= limit) {
+      const code = prompt('⚠️ 您的本月免费体验次数已满。请输入修修图尊享版激活码解锁全家桶无限次本地高质处理：');
+      if (code === 'XIU2025-FREE') {
+        localStorage.setItem(ACTIVATION_KEY, 'true');
+        updateAllButtons();
+        closeAllModals();
+        showToast('🎉 尊享版全家桶已成功激活！无限次处理已解锁。');
+        // 激活后不自动打开业务窗口，等待用户再次点击
+      } else if (code !== null) {
+        showToast('激活码无效，请确认后重试。');
       }
+      return;
     }
-
-    function openModalDirectly(modalId) {
-      const el = document.getElementById(modalId);
-      if (el) el.classList.add('active');
+    // 正常使用
+    usage[tool] = count + 1;
+    saveUsage(usage);
+    openModalDirectly(modalId);
+    if (usage[tool] >= limit) {
+      btnElement.textContent = '🔑 解锁无限次数';
+      btnElement.classList.add('is-locked');
     }
+  }
 
-    function closeModals() { closeAllModals(); }
+  // ========== 通用关闭 ==========
+  function closeModals() { closeAllModals(); }
 
-    // 以下为工具打开函数，实际完整产品中应绑定到按钮
-    function openCompressModal() { closeAllModals(); document.getElementById('compressModal').classList.add('active'); }
-    function openListingModal() { closeAllModals(); document.getElementById('listingModal').classList.add('active'); }
-    function openConvertModal() { closeAllModals(); document.getElementById('convertModal').classList.add('active'); }
-    function openCoverModal() { closeAllModals(); document.getElementById('coverModal').classList.add('active'); }
-    function openCrossModal() { closeAllModals(); document.getElementById('crossModal').classList.add('active'); }
-    function openCopywritingModal() { closeAllModals(); document.getElementById('copywritingModal').classList.add('active'); }
+  // 以下为各个工具的业务逻辑函数（完整保留）
+  // 图片压缩
+  function handleCompressUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width; canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        canvas.toBlob((blob) => {
+          const compressedUrl = URL.createObjectURL(blob);
+          document.getElementById('compressPreview').style.display = 'flex';
+          document.getElementById('compressPreview').innerHTML = `<img src="${compressedUrl}" alt="压缩预览">`;
+          document.getElementById('compressStats').style.display = 'block';
+          document.getElementById('compressStats').innerHTML = `原始: ${(file.size/1024).toFixed(1)}KB → 压缩后: ${(blob.size/1024).toFixed(1)}KB`;
+          document.getElementById('compressDownloadBtn').style.display = 'inline-flex';
+          document.getElementById('compressDownloadBtn').onclick = () => {
+            const a = document.createElement('a'); a.href = compressedUrl; a.download = 'compressed.jpg'; a.click();
+          };
+        }, 'image/jpeg', 0.7);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
 
-    // 初始化按钮状态
-    updateAllButtons();
+  // 一键上架
+  const platforms = {
+    taobao: { width: 800, height: 800, name: '淘宝主图' },
+    pdd: { width: 800, height: 800, name: '拼多多主图' },
+    douyin: { width: 800, height: 800, name: '抖店主图' },
+    xhs: { width: 1080, height: 1440, name: '小红书主图' }
+  };
+  let uploadedImage = null;
+  function handleListingUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        uploadedImage = img;
+        document.getElementById('platformSelect').style.display = 'flex';
+        document.getElementById('generateBtn').style.display = 'inline-flex';
+        document.getElementById('listingUpload').innerHTML = '<p>✅ 图片已就绪，请选择平台并生成</p>';
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+  function generatePlatformImages() {
+    if (!uploadedImage) return;
+    const selected = Array.from(document.querySelectorAll('#platformSelect input:checked')).map(cb => cb.value);
+    if (selected.length === 0) { alert('请至少选择一个平台'); return; }
+    const grid = document.getElementById('downloadGrid');
+    grid.innerHTML = '';
+    selected.forEach(key => {
+      const plat = platforms[key];
+      const canvas = document.createElement('canvas');
+      canvas.width = plat.width; canvas.height = plat.height;
+      const ctx = canvas.getContext('2d');
+      const imgRatio = uploadedImage.width / uploadedImage.height;
+      const targetRatio = plat.width / plat.height;
+      let sx, sy, sw, sh;
+      if (imgRatio > targetRatio) {
+        sh = uploadedImage.height; sw = sh * targetRatio; sx = (uploadedImage.width - sw) / 2; sy = 0;
+      } else {
+        sw = uploadedImage.width; sh = sw / targetRatio; sx = 0; sy = (uploadedImage.height - sh) / 2;
+      }
+      ctx.drawImage(uploadedImage, sx, sy, sw, sh, 0, 0, plat.width, plat.height);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+      const item = document.createElement('div');
+      item.className = 'download-item';
+      item.innerHTML = `<img src="${dataUrl}" alt="${plat.name}"><p>${plat.name}</p><a href="${dataUrl}" download="${plat.name}.jpg" class="btn-ghost" style="font-size:0.8rem;">下载</a>`;
+      grid.appendChild(item);
+    });
+  }
 
-    // 注：实际产品中每个模态窗口内部还需包含上传、处理、下载等逻辑，此处为保证全局架构完整性，仅作占位演示。
-  </script>
+  // 格式转换
+  let convertFile = null;
+  function handleConvertUpload(event) {
+    convertFile = event.target.files[0];
+    if (!convertFile) return;
+    document.getElementById('convertFormatSelect').style.display = 'flex';
+    document.getElementById('convertUpload').innerHTML = `<p>✅ 已选择：${convertFile.name}</p><p class="small-text">请选择目标格式并开始转换</p>`;
+  }
+  function performConvert() {
+    if (!convertFile) return;
+    const format = document.getElementById('convertTargetFormat').value;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width; canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        const ext = format.split('/')[1];
+        canvas.toBlob((blob) => {
+          const url = URL.createObjectURL(blob);
+          document.getElementById('convertPreview').style.display = 'flex';
+          document.getElementById('convertPreview').innerHTML = `<img src="${url}" alt="转换预览">`;
+          document.getElementById('convertStats').style.display = 'block';
+          document.getElementById('convertStats').innerHTML = `格式：${ext.toUpperCase()} | 大小：${(blob.size/1024).toFixed(1)}KB`;
+          document.getElementById('convertDownloadBtn').style.display = 'inline-flex';
+          document.getElementById('convertDownloadBtn').onclick = () => {
+            const a = document.createElement('a'); a.href = url; a.download = `converted.${ext}`; a.click();
+          };
+        }, format, 0.92);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(convertFile);
+  }
+
+  // 封面提取
+  let coverVideoElement = null;
+  function handleCoverUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    if (file.size > 100 * 1024 * 1024) { alert('视频文件不能超过100MB'); return; }
+    const video = document.getElementById('coverVideo');
+    const url = URL.createObjectURL(file);
+    video.src = url;
+    document.getElementById('coverVideoContainer').style.display = 'block';
+    document.getElementById('coverSeekBar').style.display = 'flex';
+    document.getElementById('coverTextControls').style.display = 'flex';
+    document.getElementById('coverUpload').innerHTML = '<p>✅ 视频已加载，拖动进度条或播放到想要的位置，然后点击抓取</p>';
+    video.addEventListener('loadedmetadata', () => { document.getElementById('seekSlider').max = video.duration; });
+    video.addEventListener('timeupdate', () => { document.getElementById('seekSlider').value = video.currentTime; document.getElementById('currentTimeDisplay').textContent = video.currentTime.toFixed(1); });
+    document.getElementById('seekSlider').oninput = function() { video.currentTime = this.value; };
+    coverVideoElement = video;
+  }
+  function captureFrame() {
+    if (!coverVideoElement) return;
+    const video = coverVideoElement;
+    const canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const text = document.getElementById('coverTextInput').value.trim();
+    if (text) {
+      const color = document.getElementById('coverTextColor').value;
+      const fontSize = Math.round(canvas.height * 0.06);
+      ctx.font = `bold ${fontSize}px -apple-system, sans-serif`;
+      ctx.fillStyle = color;
+      ctx.strokeStyle = 'rgba(0,0,0,0.5)'; ctx.lineWidth = 2; ctx.textAlign = 'center';
+      const y = canvas.height - fontSize * 1.5;
+      ctx.strokeText(text, canvas.width/2, y); ctx.fillText(text, canvas.width/2, y);
+    }
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+    document.getElementById('coverPreview').style.display = 'flex';
+    document.getElementById('coverPreview').innerHTML = `<img src="${dataUrl}" alt="封面预览">`;
+    document.getElementById('coverDownloadBtn').style.display = 'inline-flex';
+    document.getElementById('coverDownloadBtn').onclick = () => { const a = document.createElement('a'); a.href = dataUrl; a.download = 'cover.jpg'; a.click(); };
+  }
+
+  // 跨境适配
+  const crossPlatforms = {
+    amazon: { width: 2000, height: 2000, name: '亚马逊主图' },
+    aliexpress: { width: 800, height: 800, name: '速卖通主图' },
+    shopee: { width: 800, height: 800, name: 'Shopee主图' },
+    lazada: { width: 800, height: 800, name: 'Lazada主图' }
+  };
+  let crossUploadedImage = null;
+  function handleCrossUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        crossUploadedImage = img;
+        document.getElementById('crossPlatformSelect').style.display = 'flex';
+        document.getElementById('crossGenerateBtn').style.display = 'inline-flex';
+        document.getElementById('crossUpload').innerHTML = '<p>✅ 图片已就绪，请选择跨境平台并生成</p>';
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+  function generateCrossImages() {
+    if (!crossUploadedImage) return;
+    const selected = Array.from(document.querySelectorAll('#crossPlatformSelect input:checked')).map(cb => cb.value);
+    if (selected.length === 0) { alert('请至少选择一个平台'); return; }
+    const grid = document.getElementById('crossDownloadGrid');
+    grid.innerHTML = '';
+    selected.forEach(key => {
+      const plat = crossPlatforms[key];
+      const canvas = document.createElement('canvas');
+      canvas.width = plat.width; canvas.height = plat.height;
+      const ctx = canvas.getContext('2d');
+      const imgRatio = crossUploadedImage.width / crossUploadedImage.height;
+      const targetRatio = plat.width / plat.height;
+      let sx, sy, sw, sh;
+      if (imgRatio > targetRatio) {
+        sh = crossUploadedImage.height; sw = sh * targetRatio; sx = (crossUploadedImage.width - sw) / 2; sy = 0;
+      } else {
+        sw = crossUploadedImage.width; sh = sw / targetRatio; sx = 0; sy = (crossUploadedImage.height - sh) / 2;
+      }
+      ctx.drawImage(crossUploadedImage, sx, sy, sw, sh, 0, 0, plat.width, plat.height);
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+      const item = document.createElement('div');
+      item.className = 'download-item';
+      item.innerHTML = `<img src="${dataUrl}" alt="${plat.name}"><p>${plat.name}</p><a href="${dataUrl}" download="${plat.name}.jpg" class="btn-ghost" style="font-size:0.8rem;">下载</a>`;
+      grid.appendChild(item);
+    });
+  }
+
+  // 电商文案
+  const copywritingTemplates = {
+    pdd: { templates: ['💥【{keyword}】清仓价！{sellingPoint}不买后悔！限时特惠抢！','🔥{keyword}，{sellingPoint}，拼着买更便宜！速抢！','💰{keyword}今天只要这个价！{sellingPoint}，手慢无！'] },
+    taobao: { templates: ['【新品首发】{keyword}，{sellingPoint}，品质保证，7天无理由退换','{keyword} | {sellingPoint} | 今日下单送运费险','2025新款{keyword}，{sellingPoint}，限时包邮'] },
+    douyin: { templates: ['姐妹们！这款{keyword}真的太绝了！{sellingPoint}，速冲！','#好物推荐 这个{keyword}，{sellingPoint}，绝绝子！','快看！{keyword}，{sellingPoint}，库存不多赶紧拍！'] },
+    xhs: { templates: ['✨被问爆的{keyword}！{sellingPoint}，谁用谁知道～','小众宝藏{keyword}，{sellingPoint}，私藏分享🤫','年度爱用{keyword}合集，{sellingPoint}，后悔没早入手'] }
+  };
+  let selectedTemplate = null;
+  function selectCopyTemplate(key) {
+    selectedTemplate = key;
+    document.getElementById('copywritingForm').style.display = 'flex';
+    document.getElementById('copywritingResult').style.display = 'none';
+    document.getElementById('copywritingCopyBtn').style.display = 'none';
+  }
+  function generateCopywriting() {
+    if (!selectedTemplate) { alert('请先选择文案风格'); return; }
+    const keyword = document.getElementById('copyKeyword').value.trim();
+    const sellingPoint = document.getElementById('copySellingPoint').value.trim();
+    if (!keyword) { alert('请输入商品核心词'); return; }
+    const templates = copywritingTemplates[selectedTemplate].templates;
+    const results = templates.map(t => t.replace('{keyword}', keyword).replace('{sellingPoint}', sellingPoint || '品质推荐'));
+    document.getElementById('copywritingResult').style.display = 'block';
+    document.getElementById('copywritingResult').innerHTML = results.map(r => `<p style="margin-bottom:8px;">${r}</p>`).join('');
+    document.getElementById('copywritingCopyBtn').style.display = 'inline-flex';
+  }
+  function copyCopywriting() {
+    const text = document.getElementById('copywritingResult').innerText;
+    navigator.clipboard.writeText(text).then(() => alert('文案已复制到剪贴板'));
+  }
+
+  // 打开具体工具的函数
+  function openCompressModal() { openModalDirectly('compressModal'); }
+  function openListingModal() { openModalDirectly('listingModal'); }
+  function openConvertModal() { openModalDirectly('convertModal'); }
+  function openCoverModal() { openModalDirectly('coverModal'); }
+  function openCrossModal() { openModalDirectly('crossModal'); }
+  function openCopywritingModal() { openModalDirectly('copywritingModal'); }
+
+  // 初始化按钮状态
+  updateAllButtons();
+</script>
 </body>
 </html>
