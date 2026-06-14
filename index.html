@@ -254,34 +254,33 @@
         <button class="btn-ghost" onclick="openListingModal()">📐 封面尺寸</button>
       </div>
     </div>
-    <!-- 卡片6：图片压缩 -->
+    <!-- 卡片6：图片压缩（调整布局） -->
     <div class="bento-card" data-platform="all">
       <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
       <div class="card-title">🗜️ 图片压缩</div>
-      <div class="card-desc">自研Canvas本地压缩，每月免费5次。</div>
-      <div class="card-actions">
-        <button class="btn-outline" id="btn-compress" onclick="useTool('compress', 'compressModal', this)">🚀 自研压缩</button>
-        <a href="https://tinypng.com" target="_blank" class="btn-ghost">TinyPNG →</a>
+      <div class="card-desc">自研Canvas本地压缩，每月免费5次，零上传更安全。</div>
+      <div class="card-actions" style="justify-content: stretch;">
+        <button class="btn-outline" id="btn-compress" onclick="useTool('compress', 'compressModal', this)" style="flex: 1;">🚀 自研压缩</button>
       </div>
     </div>
-    <!-- 卡片7：格式转换 -->
+    <!-- 卡片7：格式转换（替换外部链接） -->
     <div class="bento-card" data-platform="all">
       <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg></div>
       <div class="card-title">🔄 格式转换</div>
       <div class="card-desc">JPG/PNG/WebP互转，自研每月免费5次。</div>
       <div class="card-actions">
         <button class="btn-outline" id="btn-convert" onclick="useTool('convert', 'convertModal', this)">🚀 自研转换</button>
-        <a href="https://convertio.co/zh/" target="_blank" class="btn-ghost">Convertio →</a>
+        <a href="https://www.jishugongju.com/" target="_blank" class="btn-ghost">万能转换 →</a>
       </div>
     </div>
-    <!-- 卡片8：免费素材 -->
+    <!-- 卡片8：免费素材（替换国内可访问资源） -->
     <div class="bento-card" data-platform="all">
       <div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
       <div class="card-title">📸 免费素材</div>
-      <div class="card-desc">Pexels、Unsplash 可商用图片素材，免费下载。</div>
+      <div class="card-desc">国内顺畅访问的免费商用素材，快速拿图。</div>
       <div class="card-actions">
-        <a href="https://www.pexels.com/zh-cn/" target="_blank" class="btn-outline">Pexels</a>
-        <a href="https://unsplash.com" target="_blank" class="btn-ghost">Unsplash →</a>
+        <a href="https://m.ichuangyi.com/" target="_blank" class="btn-outline">阿里素材 →</a>
+        <a href="https://pixabay.com/zh/" target="_blank" class="btn-ghost">Pixabay →</a>
       </div>
     </div>
     <!-- 卡片9：电商文案 -->
@@ -553,7 +552,6 @@
         updateAllButtons();
         closeAllModals();
         showToast('🎉 尊享版全家桶已成功激活！无限次处理已解锁。');
-        // 激活后不自动打开业务窗口，等待用户再次点击
       } else if (code !== null) {
         showToast('激活码无效，请确认后重试。');
       }
